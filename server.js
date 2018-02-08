@@ -31,7 +31,7 @@ app.use("/styles", sass({
   src: __dirname + "/styles",
   dest: __dirname + "/public/styles",
   debug: true,
-  outputStyle: 'expanded'
+  outputStyle: 'compressed'
 }));
 app.use(express.static("public"));
 
@@ -41,6 +41,11 @@ app.use("/api/users", usersRoutes(knex));
 // Home page
 app.get("/", (req, res) => {
   res.render("index");
+});
+
+//Login page
+app.get("/login", (req, res) => {
+  res.render("login");
 });
 
 app.listen(PORT, () => {

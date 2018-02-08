@@ -1,5 +1,12 @@
 
-.container {
+
+.col-xs-3 {
   align-content: center;
   flex-direction: row;
+  border: 1px solid grey;
+  border-radius: 8px;
+}
+
+.listIem {
+  padding: auto;
 }

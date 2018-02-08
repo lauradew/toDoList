@@ -12,6 +12,8 @@
   "author": "Lighthouse Labs",
   "license": "ISC",
   "dependencies": {
+    "bayes": "0.0.7",
+    "bayes-classifier": "0.0.5",
     "body-parser": "^1.15.2",
     "dotenv": "^2.0.0",
     "ejs": "^2.4.1",
@@ -21,6 +23,7 @@
     "morgan": "^1.7.0",
     "node-sass-middleware": "^0.9.8",
     "pg": "^6.0.2",
+    "stopword": "^0.1.9",
     "uuid": "^3.2.1"
   },
   "devDependencies": {

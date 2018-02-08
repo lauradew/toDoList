@@ -1,4 +1,3 @@
-
 // require anon function 
 const categorize = require('./category');
 

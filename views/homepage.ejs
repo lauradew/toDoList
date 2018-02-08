@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
     <link rel="stylesheet" href="/styles/homepage.css" type="text/css" />
 
-
+    <script type="text/javascript" src="/scripts/addDo.js"></script>
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <!-- <script type="text/javascript" src="/scripts/app.js"></script> -->
   </head>
@@ -24,7 +24,7 @@
         <input type="text" id="do" placeholder="DO.">
       </div>
       <div id="navbuttons">
-        <button type="addTask" id="addtask" method="POST" action="/homepage">
+        <button type="addTask" id="addtask" onclick="addDo()" ">
          add task.
         </button>
         <button type="submit" id="logoutbutton" method="POST" action="/logout">
@@ -37,7 +37,7 @@
   <div class="listContainer">
     <div class="listRow">
       <div class="listColumn">
-        <div class="listHeader">
+        <div id="eat" class="listHeader">
           Eat.
         </div>
         <div class="itemContainer">
@@ -53,7 +53,7 @@
         </div>
       </div>
       <div class="listColumn">
-        <div class="listHeader">
+        <div id="watch" class="listHeader">
           Watch.
         </div>
         <div class="itemContainer">
@@ -66,7 +66,7 @@
         </div>
       </div>
       <div class="listColumn">
-        <div class="listHeader">
+        <div id="read" class="listHeader">
           Read.
         </div>
         <div class="itemContainer">
@@ -76,7 +76,7 @@
         </div>
       </div>
       <div class="listColumn">
-        <div class="listHeader">
+        <div id="buy" class="listHeader">
           Buy.
         </div>
         <div class="itemContainer">

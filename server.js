@@ -43,6 +43,10 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+app.get("/homepage", (req, res) => {
+  res.render("homepage.ejs");
+})
+
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
 });

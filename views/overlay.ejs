@@ -6,33 +6,36 @@
   </head>
 
   <body>
-    <h1>Overlay stuff</h1>
+    <h1>TODO. Overlay</h1>
     <div class="container">
-      <h2>Basic Modal Example</h2>
+      <h2>Modal to use for each todo item</h2>
       <!-- Trigger the modal with a button -->
-      <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+      <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Todo title should be displayed here</button>
     
       <!-- Modal -->
       <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
-        
+
           <!-- Modal content-->
           <div class="modal-content">
             <div class="modal-header">
+              <h4>Modal header</h4>
               <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Modal Header</h4>
             </div>
             <div class="modal-body">
-              <p>Some text in the modal.</p>
+              <p>Pulling data from database:</p>
+
+              <form method="GET" action="/api/users">
+                <button>inside a FORM, GET request to '/'</button>
+              </form>
             </div>
             <div class="modal-footer">
+              <h4>modal footer</h4> 
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
           </div>
-          
         </div>
       </div>
-      
     </div>
     </body>
 </html>

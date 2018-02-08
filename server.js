@@ -43,7 +43,7 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-app.get("/show", (req, res) => {
+app.get("/overlay", (req, res) => {
   res.render("overlay");
 });
 

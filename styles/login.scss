@@ -2,11 +2,46 @@
     font-size: 300px;
     font-family: 'Montserrat', 'sans-serif';
     padding-left: 20px;
+    color: rgb(56, 56, 56);
 
 }
 
 .login {
     float: right;
+    margin-top: 2em;
+    margin-right: 2em;
 }
 
-.login #
+.loginemail {
+    width: 250px;
+}
+
+.loginpassword {
+    width: 150px;
+}
+
+main {
+  width: 450px;
+  height: 100%;
+  background: white;
+  float: right;
+  text-align: left;
+}
+
+p {
+    margib: 0px;
+}
+
+.miniheader {
+    font-size: 30px;
+    font-weight: 900;
+}
+
+.registeremail {
+    width: 100%;
+}
+
+.registerpassword {
+    width: 100%;
+    
+}

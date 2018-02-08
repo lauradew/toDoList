@@ -13,28 +13,28 @@
 
 <body>
 
-    <form class="login" action="/login" method="POST" style="margin:50px;">
-        <input id="email" type="text" name="email" placeholder="email" style="width: 150px">
-        <input id="password" type="password" name="password" placeholder="password" style="width: 100px">
+    <form class="login" action="/login" method="POST">
+        <input class="loginemail" type="text" name="email" placeholder="Email">
+        <input class="loginpassword" type="password" name="password" placeholder="Password">
         <input type="submit" value="Log In">
     </form>
 
     <div id="main"><b>TODO.</b></div>
-    <div class="register">
-    <h1>
-        <p>SEE WHAT'S ON YOUR TODO LIST.</p>
-    </h1>
+    <main id="register">
+        <section class="header">
+            <p>SEE WHAT'S ON YOUR TODO LIST.</p>
+        </section>
 
-    <h2>
-        <p>Join TODO. today.</p>
-    </h2>
+        <section class ="miniheader">
+            <p>Join TODO. today.</p>
+        </section>
 
-    <form class="register" action="/register" method="POST" style="margin:50px;">
-        <input id="email" type="text" name="email" placeholder="email" style="width: 150px">
-        <input id="password" type="password" name="password" placeholder="password" style="width: 100px">
-        <input type="submit" value="Log In">
-    </form>
-    </div>
+        <form class="register" action="/register" method="POST">
+            <input class="registeremail" type="text" name="email" placeholder="Email">
+            <input class="registerpassword" type="password" name="Password" placeholder="password">
+            <input type="submit" value="Log In">
+        </form>
+    </main>
 </body>
 
 </html>

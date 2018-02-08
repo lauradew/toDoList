@@ -44,13 +44,17 @@ bayesClassifier.train();
 
 // sample for implementing into app
 const str = "i wanna buy a bike";
-const userStringSplit = str.split(' ');
-const newStr = stopwords.removeStopwords(userStringSplit);
 
 // console.log(bayesClassifier.classify('pizza'));
 // console.log(bayesClassifier.classify('read harry potter'));
 // console.log(bayesClassifier.classify('buy a bike'));
 // console.log(bayesClassifier.classify('watch batman'));
 
-// should log the string 'buy'
-console.log(bayesClassifier.classify(newStr));
+// function to export categorize by nlp
+
+
+module.exports = function (phrase) {
+  const userStringSplit = phrase.split(' ');
+  const newStr = stopwords.removeStopwords(userStringSplit);
+  return bayesClassifier.classify(newStr);
+};

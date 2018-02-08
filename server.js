@@ -43,10 +43,16 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+<<<<<<< HEAD
 //Login page
 app.get("/login", (req, res) => {
   res.render("login");
 });
+=======
+app.get("/homepage", (req, res) => {
+  res.render("homepage.ejs");
+})
+>>>>>>> 22c1b7525f087500053a948ff4ce108cb7efcb5a
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);

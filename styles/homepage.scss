@@ -1,12 +1,42 @@
-
-
-.col-xs-3 {
-  align-content: center;
-  flex-direction: row;
-  border: 1px solid grey;
-  border-radius: 8px;
+body {
+  font-family: 'Montserrat', 'sans-serif';
 }
 
-.listIem {
-  padding: auto;
+.listContainer {
+  padding: 24px;
 }
+
+.listRow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 24px;
+}
+
+.listHeader {
+  text-align: center;
+  border: 1px solid lightgrey;
+  border-radius: 4px;
+  padding-top: 8px;
+}
+
+.listColumn {
+  display: grid;
+  grid-template-rows: 40px 1fr;
+  grid-gap: 24px;
+}
+
+.itemContainer {
+  display: grid;
+  align-content: baseline;
+  border: 1px solid lightgrey;
+  border-radius: 4px;
+}
+
+.item {
+  margin: 15px;
+  border: 1px solid lightgrey;
+  border-radius: 4px;
+  height: fit-content;
+  padding: 8px;
+}
+

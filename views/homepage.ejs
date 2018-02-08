@@ -4,9 +4,13 @@
     <title>Home Page</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,800,900" rel="stylesheet">
+
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/homepage.css" type="text/css" />
 
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
@@ -14,34 +18,77 @@
   </head>
 
   <body>
-    <h1>To...</h1>
-<div class="container">
-  <div class="row">
-    <div class="col-xs-3">
-      Eat.
-      <div class="listItem">
-        item
+    <nav id="nav-bar">
+      <h1>To...</h1>
+      <div id="inputcontainer">
+        <input type="text" id="do" placeholder="DO.">
       </div>
-    </div>
-    <div class="col-xs-3">
-      Watch.
-      <div class="listItem">
-        item
+      <div id="navbuttons">
+        <button type="addTask" id="addtask" method="POST" action="/homepage">
+         add task.
+        </button>
+        <button type="submit" id="logoutbutton" method="POST" action="/logout">
+         logout.
+        </button>
       </div>
-    </div>
-    <div class="col-xs-3">
-      Read.
-      <div class="listItem">
-        item
+    </nav>
+
+
+  <div class="listContainer">
+    <div class="listRow">
+      <div class="listColumn">
+        <div class="listHeader">
+          Eat.
+        </div>
+        <div class="itemContainer">
+          <div class="item">
+            item
+          </div>
+          <div class="item">
+            item
+          </div>
+          <div class="item">
+            item
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="col-xs-3">
-      Buy.
-      <div class="listItem">
-        item
+      <div class="listColumn">
+        <div class="listHeader">
+          Watch.
+        </div>
+        <div class="itemContainer">
+          <div class="item">
+            item
+          </div>
+          <div class="item">
+            item
+          </div>
+        </div>
+      </div>
+      <div class="listColumn">
+        <div class="listHeader">
+          Read.
+        </div>
+        <div class="itemContainer">
+          <div class="item">
+            item
+          </div>
+        </div>
+      </div>
+      <div class="listColumn">
+        <div class="listHeader">
+          Buy.
+        </div>
+        <div class="itemContainer">
+          <div class="item">
+            item
+          </div>
+          <div class="item">
+            item
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
-  </body>
+    </body>
 </html>

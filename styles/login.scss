@@ -1,3 +1,7 @@
+body {
+  background-color: #EEE;
+}
+
 #main {
     font-size: 300px;
     font-family: 'Montserrat', 'sans-serif';
@@ -9,27 +13,53 @@
 .login {
     float: right;
     margin-top: 2em;
-    margin-right: 2em;
+    margin-right: 10em;
+}
+
+.login input[type=submit] {
+    border-radius: 5px;
+    background-color: rgb(56, 56, 56);
+    color: rgb(187, 187, 187);
+    padding: 0.2em 2em;
+}
+
+.login input[type=submit]:hover {
+    border-radius: 5px;
+    background-color: rgb(56, 56, 56);
+    color: rgb(187, 187, 187);
+    padding: 0.2em 2em;
+    opacity: .8;
+
 }
 
 .loginemail {
     width: 250px;
+    margin-right: 1em;
+    border-color: rgba(145, 144, 144, 0.842);
+    border-radius: 3px;
 }
 
 .loginpassword {
     width: 150px;
+    margin-right: 1em;
+    border-color: rgba(145, 144, 144, 0.842);
+    border-radius: 3px;
 }
 
 main {
-  width: 450px;
+  width: 350px;
   height: 100%;
   background: white;
   float: right;
-  text-align: left;
+  margin-bottom: 5em;
+  margin-right: 22.5em;
 }
 
-p {
-    margib: 0px;
+.header {
+    font-size: 40px;
+    text-align: justify;
+    font-weight: 900;
+    font-weight: heavy
 }
 
 .miniheader {
@@ -39,9 +69,35 @@ p {
 
 .registeremail {
     width: 100%;
+    margin-top: 1em;
+    margin-right: 3em;
+    border-color: rgba(145, 144, 144, 0.842);
+    border-radius: 3px;
 }
 
 .registerpassword {
     width: 100%;
-    
+    margin-top: 1em;
+    margin-right: 3em;
+    margin-bottom: 1em;
+    border-color: rgba(145, 144, 144, 0.842);
+    border-radius: 3px;
 }
+
+.register input[type=submit] {
+    border-radius: 5px;
+    background-color: rgb(56, 56, 56);
+    color: rgb(187, 187, 187);
+    padding: 0.2em 2em;;
+    float: right;
+}
+
+.register input[type=submit]:hover {
+    border-radius: 5px;
+    background-color: rgb(56, 56, 56);
+    color: rgb(187, 187, 187);
+    padding: 0.2em 2em;;
+    float: right;
+    opacity: .8;
+}
+

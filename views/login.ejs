@@ -8,13 +8,15 @@
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
     <link rel="stylesheet" href="/styles/login.css" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
 
 </head>
 
 <body>
 
     <form class="login" action="/login" method="POST">
-        <input class="loginemail" type="text" name="email" placeholder="Email">
+        <input class="loginemail" type="email" name="email" placeholder="Email">
         <input class="loginpassword" type="password" name="password" placeholder="Password">
         <input type="submit" value="Log In">
     </form>
@@ -30,9 +32,9 @@
         </section>
 
         <form class="register" action="/register" method="POST">
-            <input class="registeremail" type="text" name="email" placeholder="Email">
+            <input class="registeremail" type="email" name="email" placeholder="Email">
             <input class="registerpassword" type="password" name="Password" placeholder="password">
-            <input type="submit" value="Log In">
+            <input type="submit" value="Register">
         </form>
     </main>
 </body>

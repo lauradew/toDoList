@@ -1,0 +1,55 @@
+#nav-bar{
+  font-family: 'Montserrat', 'sans-serif';
+  display: grid;
+  grid-template-columns: 1.5fr 3fr 1.5fr;
+  border-bottom-style: outset;
+    border-bottom-width: thin;
+  }
+
+#nav-bar h1 {
+  margin-left: 20%;
+  font-weight: 700;
+}
+
+#nav-bar #doForm {
+  height: 50px;
+  margin-top: 8px;
+}
+
+#nav-bar #do {
+  width: 95%;
+  text-align: center;
+  margin: 8px;
+  border: 1px solid lightgrey;
+  border-radius: 4px;
+  height: 70%;
+}
+
+#nav-bar #addtask {
+  top: 30%;
+  position: relative;
+  border-radius: 4px;
+}
+
+#nav-bar #logoutbutton {
+  top: 30%;
+  position: relative;
+  float: right;
+  margin-right: 10%;
+  border-radius: 4px;
+}
+
+/*#nav-bar .header {
+  position: fixed;
+  line-height: 2.5;
+  font-weight: 300;
+  font-size: 32px;
+  margin-left: 10px;
+}
+*/
+/*    color: black;
+    position: fixed;
+    width: 100%;
+    padding-left: 2em;
+    padding-right: 2em;
+    z-index: 10;*/

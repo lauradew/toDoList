@@ -31,7 +31,7 @@ app.use("/styles", sass({
   src: __dirname + "/styles",
   dest: __dirname + "/public/styles",
   debug: true,
-  outputStyle: 'expanded'
+  outputStyle: 'compressed'
 }));
 app.use(express.static("public"));
 
@@ -45,6 +45,15 @@ app.get("/", (req, res) => {
 
 app.get("/overlay", (req, res) => {
   res.render("overlay");
+});
+
+//Login page
+app.get("/login", (req, res) => {
+  res.render("login");
+});
+
+app.get("/homepage", (req, res) => {
+  res.render("homepage.ejs");
 });
 
 app.listen(PORT, () => {

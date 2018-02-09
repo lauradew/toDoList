@@ -90,7 +90,9 @@ app.post("/register", (req, res) => {
 
 //Login page
 app.get("/login", (req, res) => {
-  res.render('login.ejs')
+  res.render('login.ejs', {
+    errors: req.flash('error')
+  });
 });
 
 app.post("/login", (req, res) => {

@@ -12,18 +12,17 @@
     <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
     <link rel="stylesheet" href="/styles/homepage.css" type="text/css" />
 
-    <script type="text/javascript" src="/scripts/addDo.js"></script>
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+    <script type="text/javascript" src="/scripts/appendElements.js"></script>
     <!-- <script type="text/javascript" src="/scripts/app.js"></script> -->
   </head>
 
   <body>
     <nav id="nav-bar">
-      <h1>To...</h1>
+      <!-- <h1>To...</h1>
       <div id="inputcontainer">
       <form action="/homepage" id="doForm" method="POST">
         <input type="text" id="do" placeholder="DO.">
-        </textarea>
       </div>
       <div id="navbuttons">
         <input type="submit" id="addtask" value="add task.">
@@ -33,91 +32,48 @@
          logout.
         </button>
       </form>
-      </div>
+      </div>-->
+      <!-- <form class="text" onsubmit="saveDo()"> -->
+      <form class="text" id="doForm" action="/homepage" method="POST">
+        <input class="text" type="text" name="text" placeholder="Do.">
+        <input type="submit" value="Add task">
+      </form>
     </nav>
-
-
   <div class="listContainer">
-    <div class="listRow">
+    <div class="categoryColumns">
+
       <div class="listColumn">
-        <div id="eat" class="listHeader">
+        <div class="listHeader">
           Eat.
         </div>
-        <div class="itemContainer">
-          <div class="item">
-            item
-          </div>
-          <div class="item">
-            item
-          </div>
-          <div class="item">
-            item
-          </div>
-          <div class="item">
-            item
-          </div>
-          <div class="item">
-            item
-          </div>
-          <div class="item">
-            item
-          </div>
-          <div class="item">
-            item
-          </div>
-          <div class="item">
-            item
-          </div>
-          <div class="item">
-            item
-          </div>
-          <div class="item">
-            item
-          </div>
-          <div class="item">
-            item
-          </div>
-          <div class="item">
-            item
-          </div>
-        </div>
+        <section class="itemContainer" id="eat">
+        </section>
       </div>
+
       <div class="listColumn">
-        <div id="watch" class="listHeader">
+        <div class="listHeader">
           Watch.
         </div>
-        <div class="itemContainer">
-          <div class="item">
-            item
-          </div>
-          <div class="item">
-            item
-          </div>
-        </div>
+        <section class="itemContainer" id="watch">
+        </section>
       </div>
+
       <div class="listColumn">
-        <div id="read" class="listHeader">
+        <div class="listHeader">
           Read.
         </div>
-        <div class="itemContainer">
-          <div class="item">
-            item
-          </div>
-        </div>
+        <section class="itemContainer" id="read">
+        </section>
       </div>
+
       <div class="listColumn">
-        <div id="buy" class="listHeader">
+        <div class="listHeader">
           Buy.
         </div>
-        <div class="itemContainer">
-          <div class="item">
-            item
-          </div>
-          <div class="item">
-            item
-          </div>
-        </div>
+        <section class="itemContainer" id="buy">
+        </section>
       </div>
+
     </div>
   </div>
     </body>

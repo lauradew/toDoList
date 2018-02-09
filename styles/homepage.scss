@@ -6,7 +6,7 @@ body {
   padding: 24px;
 }
 
-.listRow {
+.categoryColumns {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 24px;
@@ -34,7 +34,7 @@ body {
   overflow: scroll;
 }
 
-.item {
+.toDoItem {
   margin: 15px;
   border: 1px solid lightgrey;
   border-radius: 4px;

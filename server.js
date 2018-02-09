@@ -44,6 +44,14 @@ app.use(cookieSession({
   keys: [process.env.SECRET_KEY || 'dvelopment']
 }));
 
+
+//flash error messages
+app.use((req, res, next) => {
+  req.flash = req.session.flash || null;
+  req.session.flash = null;
+  next();
+});
+
 // Mount all resource routes
 app.use("/api/users", usersRoutes(knex));
 
@@ -54,19 +62,18 @@ app.get("/", (req, res) => {
 
 app.post('/homepage', (req, res) => {
  const {text} = req.body;
- console.log(text);
  const newText = categorize(text);
- console.log(newText);
  knex('items')
  .insert({description: text, category: newText, user_id: req.session.id})
  .then((result) => {
    console.log(result)
  })
-})
+});
 
 app.get("/overlay", (req, res) => {
   res.render("overlay");
 });
+
 //user registration
 app.post("/register", (req, res) => {
   const { registeremail, registerpassword } = req.body;
@@ -82,55 +89,56 @@ app.post("/register", (req, res) => {
 
 //Login page
 app.get("/login", (req, res) => {
-  // if req.session.email {
-  //   res.status(400).send("User already signed in");
-  //   res.redirect('/homepage')
-  // }
-  res.render("login");
+if (req.session.id) {
+  res.status(400);
+  req.session.flash = "User already signed in";
+  res.redirect('/homepage')};
+res.render('login.ejs')
 });
 
 app.post("/login", (req, res) => {
   const { email } = req.body;
   const plainTextPasswordFromUser  = req.body.password;
- knex('users').where('email', email)
-<<<<<<< HEAD
- .then(id => {
-   req.session.id = id;
-   res.redirect('/homepage');
- });
-});
-=======
- .select('password')
- .then(result => {
-     if (!result || !result[0].password) {
-       console.log("username no");
-       // send the user an error message
-     } else { 
-       const hashedPasswordFreshFromTheDatabase = result[0].password;
-       if (bcrypt.compareSync(plainTextPasswordFromUser, hashedPasswordFreshFromTheDatabase)) {
-         req.session.email = email;
-         res.redirect('/homepage');
+ knex('users')
+ .select('id', 'password')
+ .where('email', email)
+ .limit(1)
+ .then((users) => {
+     if (users.length) {
+       console.log(users[0].id);
+       return Promise.all([
+         users[0].id,
+         bcrypt.compare(plainTextPasswordFromUser, users[0].password)
+       ]); 
        } else { 
-         console.log("bcrypt no")
-         //ADD ERROR FOR USERR
+         console.log("email no")
+         //ADD ERROR FOR USER
        }
-     }
-    //  const pass = result[2];
-    //  if (bcrypt.compareSync(pass, password)) {
+     })
+  .then(([userID, passwordMatches]) => {
+    if (passwordMatches) {
+    req.session.id = userID;
+    res.redirect('/homepage');
+  } else {
+    console.log("password no");
+    //INSERT FLASH FOR PASSWORD NO
+  }
+  })
 
     //  }
-   })
+
   });
 
 //  .andWhere((bcrypt.compareSync(password, 'password')) === true)
    
->>>>>>> 1408e1e1ca3ef886130912864350ab802962fd0a
   //     }
   //   } else {
   //     res.status(403).send("Not a valid login");
   //     res.redirect('/login');
   //   }
   // }
+
+
 
 
 app.get("/homepage", (req, res) => {

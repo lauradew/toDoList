@@ -8,7 +8,7 @@ const express       = require("express");
 const bodyParser    = require("body-parser");
 const sass          = require("node-sass-middleware");
 const app           = express();
-
+const flash         = require('connect-flash');
 const knexConfig    = require("./knexfile");
 const knex          = require("knex")(knexConfig[ENV]);
 const morgan        = require('morgan');
@@ -46,11 +46,7 @@ app.use(cookieSession({
 
 
 //flash error messages
-app.use((req, res, next) => {
-  req.flash = req.session.flash || null;
-  req.session.flash = null;
-  next();
-});
+app.use(flash());
 
 // Mount all resource routes
 app.use("/api/users", usersRoutes(knex));
@@ -89,11 +85,7 @@ app.post("/register", (req, res) => {
 
 //Login page
 app.get("/login", (req, res) => {
-if (req.session.id) {
-  res.status(400);
-  req.session.flash = "User already signed in";
-  res.redirect('/homepage')};
-res.render('login.ejs')
+  res.render('login.ejs')
 });
 
 app.post("/login", (req, res) => {
@@ -111,22 +103,22 @@ app.post("/login", (req, res) => {
          bcrypt.compare(plainTextPasswordFromUser, users[0].password)
        ]); 
        } else { 
-         console.log("email no")
-         //ADD ERROR FOR USER
+          return Promise.reject(new Error('email no'))
        }
      })
   .then(([userID, passwordMatches]) => {
     if (passwordMatches) {
     req.session.id = userID;
     res.redirect('/homepage');
-  } else {
-    console.log("password no");
-    //INSERT FLASH FOR PASSWORD NO
-  }
+    } else {
+      return Promise.reject(new Error('password no'));
+    }
   })
-
-    //  }
-
+   .catch((err) => {
+     console.error(err);
+     req.flash('error', 'There was a problem logging you in :(');
+     res.redirect('/login');
+   });
   });
 
 //  .andWhere((bcrypt.compareSync(password, 'password')) === true)

@@ -15,6 +15,7 @@ const morgan        = require('morgan');
 const knexLogger    = require('knex-logger');
 const cookieSession = require('cookie-session');
 const bcrypt        = require('bcrypt');
+const categorize    = require('./public/scripts/category');
 
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/users");
@@ -51,6 +52,18 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+app.post('/homepage', (req, res) => {
+ const {text} = req.body;
+ console.log(text);
+ const newText = categorize(text);
+ console.log(newText);
+ knex('items')
+ .insert({description: text, category: newText, user_id: req.session.id})
+ .then((result) => {
+   console.log(result)
+ })
+})
+
 app.get("/overlay", (req, res) => {
   res.render("overlay");
 });
@@ -63,7 +76,7 @@ app.post("/register", (req, res) => {
       console.log("done")
   })
   console.log(registeremail);
-  req.session.registeremail = registeremail;
+  req.session.id = id;
   res.redirect('/homepage');
 });
 
@@ -79,8 +92,8 @@ app.get("/login", (req, res) => {
 app.post("/login", (req, res) => {
   const { email, password } = req.body;
  knex('users').where('email', email)
- .then(email => {
-   req.session.email = email;
+ .then(id => {
+   req.session.id = id;
    res.redirect('/homepage');
  });
 });

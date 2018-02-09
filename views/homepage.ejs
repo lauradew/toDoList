@@ -33,12 +33,14 @@
         </button>
       </form>
       </div>-->
-      <!-- <form class="text" onsubmit="saveDo()"> -->
-      <form class="text" id="doForm" action="/homepage" method="POST">
+      <form class="text" action="/homepage" method="POST">
         <input class="text" type="text" name="text" placeholder="Do.">
         <input type="submit" value="Add task">
       </form>
     </nav>
+        <p>Error:
+          <%= error %>
+        </p>
   <div class="listContainer">
     <div class="categoryColumns">
 

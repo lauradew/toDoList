@@ -16,6 +16,7 @@
     "bayes-classifier": "0.0.5",
     "bcrypt": "^1.0.3",
     "body-parser": "^1.15.2",
+    "connect-flash": "^0.1.1",
     "cookie-session": "^2.0.0-beta.3",
     "dotenv": "^2.0.0",
     "ejs": "^2.4.1",

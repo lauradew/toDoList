@@ -58,7 +58,7 @@ app.get("/overlay", (req, res) => {
 app.post("/register", (req, res) => {
   const { registeremail, registerpassword } = req.body;
   knex('users')
-  .insert({ email: registeremail, password: registerpassword })
+  .insert({ email: registeremail, password: bcrypt.hashSync(registerpassword, 10) })
   .then(function (result) {
       console.log("done")
   })
@@ -77,13 +77,33 @@ app.get("/login", (req, res) => {
 });
 
 app.post("/login", (req, res) => {
-  const { email, password } = req.body;
+  const { email } = req.body;
+  const plainTextPasswordFromUser  = req.body.password;
  knex('users').where('email', email)
- .then(email => {
-   req.session.email = email;
-   res.redirect('/homepage');
- });
-});
+ .select('password')
+ .then(result => {
+     if (!result || !result[0].password) {
+       console.log("username no");
+       // send the user an error message
+     } else { 
+       const hashedPasswordFreshFromTheDatabase = result[0].password;
+       if (bcrypt.compareSync(plainTextPasswordFromUser, hashedPasswordFreshFromTheDatabase)) {
+         req.session.email = email;
+         res.redirect('/homepage');
+       } else { 
+         console.log("bcrypt no")
+         //ADD ERROR FOR USERR
+       }
+     }
+    //  const pass = result[2];
+    //  if (bcrypt.compareSync(pass, password)) {
+
+    //  }
+   })
+  });
+
+//  .andWhere((bcrypt.compareSync(password, 'password')) === true)
+   
   //     }
   //   } else {
   //     res.status(403).send("Not a valid login");

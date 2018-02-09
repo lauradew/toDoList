@@ -1,38 +1,17 @@
-function saveDo() {
-  const task = $("input.text").text();
-  addDo("eat", task);
 
-//   $.ajax({
-//     type: "POST",
-//     url: "/homepage",
-//     data: "task",
-//     success: function (result) {
-//     }
-//   });
-}
-
-function addDo(category, task) {
-  const elm = $("<div>").addClass("item");
-  elm.text(task);
-  $(`.itemContainer#${category}`).append(elm);
-}
+$(document).ready(function() {
+  $('#doForm').on('submit', function(e) {
+    e.preventDefault();
+    const taskText = $(this).find('[name="text"]').val();
+    const newTask = $("<div>").text(taskText);
+    console.log("==========", newTask);
+    newTask.addClass("toDoItem")
+    // if (newTask.length === 0) {
+    //   flashMessage("Task may not be empty.");
+     // addDo("eat", newTask);
+    // $.post("/homepage");
+    $("#eat").append(newTask);
 
 
-
-// function homepageElements(category) {
-//   const eatColumn = $("<div>")
-// }
-
-// $(document).ready(function() {
-//   $('#doForm form').on('submit'), function(e) {
-//     e.preventDefault();
-//     const newTask = $(this).find("#do").val();
-//     if (newTask.length === 0) {
-//       flashMessage("Task may not be empty.");
-//       return;
-//     } else {
-//      function to return category;
-//     }
-//   }
-// });
-
+    });
+  });

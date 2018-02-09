@@ -76,19 +76,29 @@ app.get("/login", (req, res) => {
   res.render("login");
 });
 
-// app.post("/login", (req, res) => {
-//   const { email, password } = req.body;
-// knex('users').insert({email:})
-//       }
-//     } else {
-//       res.status(403).send("Not a valid login");
-//       res.redirect('/login');
-//     }
-//   }
-// });
+app.post("/login", (req, res) => {
+  const { email, password } = req.body;
+ knex('users').where('email', email)
+ .then(email => {
+   req.session.email = email;
+   res.redirect('/homepage');
+ });
+});
+  //     }
+  //   } else {
+  //     res.status(403).send("Not a valid login");
+  //     res.redirect('/login');
+  //   }
+  // }
+
 
 app.get("/homepage", (req, res) => {
   res.render("homepage.ejs");
+});
+
+app.post("/logout", (req, res) => {
+  req.session = null;
+  res.redirect('/login');
 });
 
 app.listen(PORT, () => {

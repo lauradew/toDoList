@@ -1,3 +1,5 @@
+@import "variables";
+
 #nav-bar{
   display: flex;
   justify-content: space-around;
@@ -8,55 +10,50 @@
 #nav-bar h1 {
   margin-left: 20%;
   font-weight: 700;
-  flex-grow: 1;
 }
 
 #nav-bar #doForm {
   height: 50px;
   margin-top: 8px;
-  flex-grow: 2;
 }
 
 #do {
   width: 95%;
   text-align: center;
   margin: 8px;
-  border: 1px solid lightgrey;
+  border: 1px solid $secondary-color;
   border-radius: 4px;
   height: 70%;
 }
 
-#navButtons {
+/*#navButtons {
   margin: 8px;
-  flex-grow: 1;
   display: inline-flex;
   height: 30px;
 
-}
+}*/
 
 #addTask {
   height: 30px;
   border-radius: 4px;
-  background-color: #383838;
-  color: #bbb;
+  background-color: $brand-color;
+  color: $secondary-color;
   padding: 0.2em 2em;
 }
 
 #logout {
   top: 30%;
-  float: right;
   margin-right: 10%;
   border-radius: 4px;
-  background-color: #383838;
-  color: #bbb;
+  background-color: $brand-color;
+  color: $secondary-color;
   padding: 0.2em 2em;
 }
 
 #edit {
-  float: right;
   border-radius: 4px;
-  background-color: #383838;
-  color: #bbb;
+  background-color: $brand-color;
+  color: $secondary-color;
   padding: 0.2em 2em;
 }
 

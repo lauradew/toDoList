@@ -1,3 +1,4 @@
+@import "variables";
 
 .listContainer {
   padding: 24px;
@@ -9,7 +10,7 @@
 
 .listHeader {
   text-align: center;
-  border: 1px solid lightgrey;
+  border: 1px solid $secondary-color;
   border-radius: 4px;
   padding-top: 8px;
 }
@@ -23,7 +24,7 @@
 .itemContainer {
   display: grid;
   align-content: baseline;
-  border: 1px solid lightgrey;
+  border: 1px solid $secondary-color;
   border-radius: 4px;
   height: 500px;
   overflow: scroll;
@@ -31,7 +32,7 @@
 
 .toDoItem {
   margin: 15px;
-  border: 1px solid lightgrey;
+  border: 1px solid $secondary-color;
   border-radius: 4px;
   height: fit-content;
   padding: 8px;
@@ -39,8 +40,9 @@
 
 #modal {
   border-radius: 8px;
-  background-color: #383838;
-  color: #bbb;
-  border: 1px solid lightgrey;
+  font-size: small;
+  background-color: $brand-color;
+  color: $secondary-color;
+  border: 1px solid $secondary-color;
 }
 

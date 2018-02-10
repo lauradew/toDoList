@@ -1,12 +1,12 @@
 body {
-  font-family: 'Montserrat', 'sans-serif';
+
 }
 
 .listContainer {
   padding: 24px;
 }
 
-.categoryColumns {
+.row {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 24px;
@@ -19,7 +19,7 @@ body {
   padding-top: 8px;
 }
 
-.listColumn {
+.col-xs-3 {
   display: grid;
   grid-template-rows: 40px 1fr;
   grid-gap: 24px;

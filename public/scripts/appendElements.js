@@ -50,7 +50,7 @@ $(document).ready(function () {
   // shows the modal on click of each category item
   // FIXME: only work on category items - activates on close buttons in the modal as well
   $('body').on('click', '.toDoItem', function(e) {
-    $("#myModal").modal("show");
+    $('#myModal').modal("show");
     const description = $(this).data('title');
     $('#myModal').find('.modal-title').text(description);
     $('#myModal').find('.modal-body').text('I\'m inside the body and changin stuff!!');

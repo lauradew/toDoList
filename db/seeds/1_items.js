@@ -29,11 +29,11 @@ exports.seed = function(knex, Promise) {
         knex('items').insert({ description: 'Meal prep for next week', category: 'eat', user_id: 2 }),
         knex('items').insert({ description: 'Meet friends for lunch', category: 'eat', user_id: 1 }),
         knex('items').insert({ description: 'Eat all of the hot dogs', category: 'eat', user_id: 3 }),
-        knex('items').insert({ description: 'get a new phone case', category: 'buy', user_id: 2 }),
-        knex('items').insert({ description: 'immersion blender', category: 'buy', user_id: 3 }),
-        knex('items').insert({ description: 'buy harry potter DVD collection', category: 'buy', user_id: 1 }),
-        knex('items').insert({ description: 'plant lightbulb', category: 'buy', user_id: 1 }),
-        knex('items').insert({ description: 'get 6m usb lightning cable', category: 'buy', user_id: 2 })
+        knex('items').insert({ description: 'Get a new iPhone case', category: 'buy', user_id: 2 }),
+        knex('items').insert({ description: 'Immersion blender', category: 'buy', user_id: 3 }),
+        knex('items').insert({ description: 'Buy harry potter DVD collection', category: 'buy', user_id: 1 }),
+        knex('items').insert({ description: 'Plant lightbulb', category: 'buy', user_id: 1 }),
+        knex('items').insert({ description: 'Get 6m usb lightning cable', category: 'buy', user_id: 2 })
       ]);
     });
 };

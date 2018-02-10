@@ -78,14 +78,33 @@ app.get("/overlay", (req, res) => {
 //user registration
 app.post("/register", (req, res) => {
   const { registeremail, registerpassword } = req.body;
+  if (!registeremail || !registerpassword) {
+    req.flash('error', 'Please Fill All Required Fields');
+    res.redirect('/login');
+  } else {
   knex('users')
-  .insert({ email: registeremail, password: bcrypt.hashSync(registerpassword, 10) })
-  .then(function (result) {
-      console.log("done")
+  .where('email', registeremail)
+  .then((users) => {
+    if (users.length === 0) {
+      knex('users')
+      .insert({
+        email: registeremail,
+        password: bcrypt.hashSync(registerpassword, 10)
+      })
+      .then((users) => {
+        knex('users')
+        .max('id')
+        .then((id) => {
+          req.session.id = id[0].max
+          res.redirect('/homepage');
+        })
+      })
+    } else {
+      req.flash('error', 'User exists');
+      res.redirect('/login');
+    }
   })
-  console.log(registeremail);
-  req.session.id = id;
-  res.redirect('/homepage');
+}
 });
 
 //Login page
@@ -98,6 +117,10 @@ app.get("/login", (req, res) => {
 app.post("/login", (req, res) => {
   const { email } = req.body;
   const plainTextPasswordFromUser  = req.body.password;
+  if (!email || !plainTextPasswordFromUser) {
+    req.flash('error', 'Please Fill All Required Fields');
+    res.redirect('/login');
+  } else {
  knex('users')
  .select('id', 'password')
  .where('email', email)
@@ -123,19 +146,11 @@ app.post("/login", (req, res) => {
   })
    .catch((err) => {
      console.error(err);
-     req.flash('error', 'There was a problem logging you in :(');
+     req.flash('error', 'NOT A VALID LOGIN.');
      res.redirect('/login');
    });
+  }
   });
-
-//  .andWhere((bcrypt.compareSync(password, 'password')) === true)
-
-  //     }
-  //   } else {
-  //     res.status(403).send("Not a valid login");
-  //     res.redirect('/login');
-  //   }
-  // }
 
 
 app.post("/logout", (req, res) => {

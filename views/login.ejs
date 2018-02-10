@@ -20,6 +20,13 @@
         <input class="loginpassword" type="password" name="password" placeholder="Password">
         <input type="submit" value="Log In">
     </form>
+    <% if (errors.length) { %>
+        <% for (const error of errors) { %>
+        <p class="error">
+         <%= error %>
+         </p>
+         <% } %>
+    <% } %>
 
     <div id="main"><b>TODO.</b></div>
     <main id="register">

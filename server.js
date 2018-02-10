@@ -54,6 +54,23 @@ app.use(flash());
 // gets a JSON of items table
 app.use("/api/items", usersRoutes(knex));
 
+
+
+
+function awesomeClassifier(input) {
+  // This intelligence is entirely artificial, fuck yeah.
+  var options = [
+    'watch',
+    'eat',
+    'read',
+    'buy'
+  ];
+  var index = Math.floor(Math.random() * 4);
+  return options[index];
+}
+
+
+
 // Home page
 app.get("/", (req, res) => {
   res.render("index");
@@ -93,6 +110,9 @@ app.post('/homepage', (req, res) => {
       user_id: req.session.id
     })
     .then((result) => {
+      res.json({
+        category: newText
+      });
       // res.redirect('/homepage');
     });
 
@@ -179,3 +199,5 @@ app.post("/logout", (req, res) => {
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
 });
+
+

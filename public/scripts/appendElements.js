@@ -1,6 +1,12 @@
-// const categorize = require('./category');
+// ------------------------------------
+// appendElements.js
+// description: inserts new TODO element onsubmit into the corresponding user lists table & displays on page
+// TODO: change filename to include all actions performed on document.ready
+// ------------------------------------
 $(document).ready(function () {
-
+  
+  
+  // TODO: display correct modal on click of button
   $('#doForm').on('submit', function (e) {
 
     // hijack /post request from submit
@@ -8,32 +14,48 @@ $(document).ready(function () {
 
     // get the user input from the form
     const taskText = $(this).find('[name="text"]').val();
-    // const newTask = $("<div>").text(taskText);
-    const newTask = $('<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">').text(taskText);
+
+    // append user input to button text
+    const newTask = $('<button type="button" class="btn btn-info btn-lg">').text(taskText);
+    // const newTask = $('<button>').text(taskText);
+    // for styling purposes
     newTask.addClass("toDoItem");
-
-    // fixme: wait for server response before appending new task category to the category
-
-    // todo: categorize the input text using bayes-classifier
-    
-    //  todo: 
-
-    // todo:
     
     $.post('/homepage', {category: taskText}).done((response) => {
       console.log("got a response:", JSON.stringify(response));
-      // FIXME: need to categorize before appending
-      
-      // server side post categorize works but we need to figure out how to refresh the page on 'add task' to show new task on page
-      // const cat = categorize(newTask);
-      $(`#${response.category}`).append(newTask);
-        
+      const category = response.category;
+
+      // Using  $('#testButton').data('target','#testModal2')
+      // you will not modify the data-target attribute but you will
+      // store the string "#testModal2" in "target" field
+
+      // use attr to modify VALUE
+      newTask.attr('data-target', `#${category}`);
+      newTask.attr('data-toggle', 'modal');
+
+
+      const newModal = $(`<div class="modal fade" role="dialog">`);
+      newModal.attr('id', category);
+      // newModal.append(newTask);
+    
+      // TODO: append user data to new modal to be displayed
+      // $(`#${response.category}`).append(newTask);
+
+      window.location.reload("/homepage");
+
     });
 
-    
-
   });
+
+  // shows the modal on click of each category item
+  // FIXME: only work on category items - activates on close buttons in the modal as well
+  $('body').on('click', '.toDoItem', function(e) {
+    $("#myModal").modal("show");
+    const description = $(this).data('title');
+    $('#myModal').find('.modal-title').text(description);
+    $('#myModal').find('.modal-body').text('I\'m inside the body and changin stuff!!');
+
+    
+  });
+
 });
-
-
-// $('#' + result.category).append(result.description);

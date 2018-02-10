@@ -99,7 +99,7 @@ app.post('/homepage', (req, res) => {
       res.json({
         category: newText
       });
-      // res.redirect('/homepage');
+      res.redirect('/homepage');
     });
 
 });

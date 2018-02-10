@@ -7,7 +7,7 @@ module.exports = (knex) => {
 
   router.get('/', (req, res) => {
     knex('items')
-      .select('category', 'description', 'user_id')
+      .select('*')
       .where('user_id', req.session.id)
       .then((results) => {
         res.json(results);

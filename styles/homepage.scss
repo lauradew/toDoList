@@ -1,25 +1,21 @@
-body {
-  font-family: 'Montserrat', 'sans-serif';
-}
+@import "variables";
 
 .listContainer {
   padding: 24px;
 }
 
-.categoryColumns {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 24px;
+.row {
+  display: flex;
 }
 
 .listHeader {
   text-align: center;
-  border: 1px solid lightgrey;
+  border: 1px solid $secondary-color;
   border-radius: 4px;
   padding-top: 8px;
 }
 
-.listColumn {
+.col-xs-3 {
   display: grid;
   grid-template-rows: 40px 1fr;
   grid-gap: 24px;
@@ -28,7 +24,7 @@ body {
 .itemContainer {
   display: grid;
   align-content: baseline;
-  border: 1px solid lightgrey;
+  border: 1px solid $secondary-color;
   border-radius: 4px;
   height: 500px;
   overflow: scroll;
@@ -36,9 +32,17 @@ body {
 
 .toDoItem {
   margin: 15px;
-  border: 1px solid lightgrey;
+  border: 1px solid $secondary-color;
   border-radius: 4px;
   height: fit-content;
   padding: 8px;
+}
+
+#modal {
+  border-radius: 8px;
+  font-size: small;
+  background-color: $brand-color;
+  color: $secondary-color;
+  border: 1px solid $secondary-color;
 }
 

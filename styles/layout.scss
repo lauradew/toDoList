@@ -1,9 +1,5 @@
-@import "todo-items"; 
-
 body {
+  @font-family: $font-family-1;
   background-color: #EEE;
-
-  h1 {
-    color: #244751;
-  }
+  @color: $brand-color;
 }

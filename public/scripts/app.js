@@ -18,7 +18,7 @@ $(() => {
       // const closeHeader = $('<button>').addClass('close');
       // closeHeader.attr('data-dismiss', 'modal' );
       // closeHeader.text('&times;');
-      
+
       // modalContent.append(closeHeader);
       // modal.append(modalContent);
       // toDoItem.append(modal);

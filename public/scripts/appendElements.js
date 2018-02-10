@@ -4,8 +4,8 @@
 // TODO: change filename to include all actions performed on document.ready
 // ------------------------------------
 $(document).ready(function () {
-  
-  
+
+
   // TODO: display correct modal on click of button
   $('#doForm').on('submit', function (e) {
 
@@ -20,7 +20,7 @@ $(document).ready(function () {
     // const newTask = $('<button>').text(taskText);
     // for styling purposes
     newTask.addClass("toDoItem");
-    
+
     $.post('/homepage', {category: taskText}).done((response) => {
       console.log("got a response:", JSON.stringify(response));
       const category = response.category;
@@ -37,7 +37,7 @@ $(document).ready(function () {
       const newModal = $(`<div class="modal fade" role="dialog">`);
       newModal.attr('id', category);
       // newModal.append(newTask);
-    
+
       // TODO: append user data to new modal to be displayed
       // $(`#${response.category}`).append(newTask);
 
@@ -55,7 +55,10 @@ $(document).ready(function () {
     $('#myModal').find('.modal-title').text(description);
     $('#myModal').find('.modal-body').text('I\'m inside the body and changin stuff!!');
 
-    
+
   });
 
 });
+
+// $('#' + result.category).append(result.description);
+

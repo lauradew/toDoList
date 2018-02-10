@@ -1,12 +1,9 @@
-body {
-  background-color: #EEE;
-}
+@import "variables";
 
 #main {
     font-size: 300px;
-    font-family: 'Montserrat', 'sans-serif';
     padding-left: 20px;
-    color: rgb(56, 56, 56);
+    color: $brand-color;
 
 }
 
@@ -18,15 +15,15 @@ body {
 
 .login input[type=submit] {
     border-radius: 5px;
-    background-color: rgb(56, 56, 56);
-    color: rgb(187, 187, 187);
+    background-color: $brand-color;
+    color: $secondary-color;
     padding: 0.2em 2em;
 }
 
 .login input[type=submit]:hover {
     border-radius: 5px;
-    background-color: rgb(56, 56, 56);
-    color: rgb(187, 187, 187);
+    background-color: $brand-color;
+    color: $secondary-color;
     padding: 0.2em 2em;
     opacity: .8;
 
@@ -86,16 +83,16 @@ main {
 
 .register input[type=submit] {
     border-radius: 5px;
-    background-color: rgb(56, 56, 56);
-    color: rgb(187, 187, 187);
+    background-color: $brand-color;
+    color: $secondary-color;
     padding: 0.2em 2em;;
     float: right;
 }
 
 .register input[type=submit]:hover {
     border-radius: 5px;
-    background-color: rgb(56, 56, 56);
-    color: rgb(187, 187, 187);
+    background-color: $brand-color;
+    color: $secondary-color;
     padding: 0.2em 2em;;
     float: right;
     opacity: .8;

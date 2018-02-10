@@ -1,9 +1,10 @@
+@import "variables";
+
 #nav-bar{
-  font-family: 'Montserrat', 'sans-serif';
-  display: grid;
-  grid-template-columns: 1.5fr 3fr 1.5fr;
+  display: flex;
+  justify-content: space-around;
   border-bottom-style: outset;
-    border-bottom-width: thin;
+  border-bottom-width: thin;
   }
 
 #nav-bar h1 {
@@ -16,27 +17,44 @@
   margin-top: 8px;
 }
 
-#nav-bar #do {
+#do {
   width: 95%;
   text-align: center;
   margin: 8px;
-  border: 1px solid lightgrey;
+  border: 1px solid $secondary-color;
   border-radius: 4px;
   height: 70%;
 }
 
-#nav-bar #addtask {
-  top: 30%;
-  position: relative;
+/*#navButtons {
+  margin: 8px;
+  display: inline-flex;
+  height: 30px;
+
+}*/
+
+#addTask {
+  height: 30px;
   border-radius: 4px;
+  background-color: $brand-color;
+  color: $secondary-color;
+  padding: 0.2em 2em;
 }
 
-#nav-bar #logoutbutton {
+#logout {
   top: 30%;
-  position: relative;
-  float: right;
   margin-right: 10%;
   border-radius: 4px;
+  background-color: $brand-color;
+  color: $secondary-color;
+  padding: 0.2em 2em;
+}
+
+#edit {
+  border-radius: 4px;
+  background-color: $brand-color;
+  color: $secondary-color;
+  padding: 0.2em 2em;
 }
 
 /*#nav-bar .header {

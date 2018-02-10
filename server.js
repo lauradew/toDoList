@@ -104,8 +104,9 @@ app.post("/register", (req, res) => {
       res.redirect('/login');
     }
   })
-}
+ }
 });
+
 
 //Login page
 app.get("/login", (req, res) => {
@@ -113,6 +114,48 @@ app.get("/login", (req, res) => {
     errors: req.flash('error')
   });
 });
+
+//profile update page
+app.get("/profile", (req, res) => {
+  if (!req.session.id) {
+    req.flash('error', 'No user logged in');
+    res.redirect('/login');
+  }
+  knex('users')
+  .where('id', req.session.id)
+  .first('*')
+  .then((user) => {
+    res.render('useredit.ejs', {
+      email: user.email,
+      errors: req.flash('error')})
+  });
+
+});
+
+app.post('/profile', (req, res) => {
+  const {email, password, email_confirmation} = req.body;
+  if (!email || !email_confirmation || !password) {
+    req.flash('error', 'Please Fill All Required Fields');
+    res.redirect('/profile');
+  } else {
+    knex('users')
+    .where('email', email_confirmation)
+    .then((users) => {
+      if (users.length === 1) {
+        knex('users')
+        .where({id: req.session.id})
+        .update({
+          email: email,
+          password: bcrypt.hashSync(password, 10)})
+        .then()
+        res.redirect('/homepage')  
+      } else {
+          req.flash('error', 'No user by that email');
+          res.redirect('/profile');
+        }
+      })
+  } 
+})
 
 app.post("/login", (req, res) => {
   const { email } = req.body;

@@ -77,31 +77,10 @@ app.get("/", (req, res) => {
 });
 
 app.get("/homepage", (req, res) => {
-<<<<<<< HEAD
-
-  // get stuff from 'items' database
-
-  // for (let result of results) {
-
-  //   // todo: lodash - groupBy for categories
-
-  //   // todo: put the todo stuff into correct category container
-  //   // todo: user helper module to handle creation of new todo item
-
-  //   // todo: for EACH result, create a NEW html element to append into the category container
-  //   // todo: find the right category #id to append to
-  //   // todo: render 
-
-  //   console.log("stuff");
-
-  // }
-
-=======
   if (!req.session.id) {
     req.flash('error', 'No user logged in');
     res.redirect('/login');
   }
->>>>>>> feature/flash
   res.render("homepage.ejs");
 });
 
@@ -131,23 +110,6 @@ app.get("/overlay", (req, res) => {
 
 //user registration
 app.post("/register", (req, res) => {
-<<<<<<< HEAD
-  const {
-    registeremail,
-    registerpassword
-  } = req.body;
-  knex('users')
-    .insert({
-      email: registeremail,
-      password: bcrypt.hashSync(registerpassword, 10)
-    })
-    .then(function (result) {
-      console.log("done");
-    });
-  console.log(registeremail);
-  req.session.id = id;
-  res.redirect('/homepage');
-=======
   const { registeremail, registerpassword } = req.body;
   if (!registeremail || !registerpassword) {
     req.flash('error', 'Please Fill All Required Fields');
@@ -176,15 +138,11 @@ app.post("/register", (req, res) => {
     }
   })
  }
->>>>>>> feature/flash
 });
 
 
 //Login page
 app.get("/login", (req, res) => {
-<<<<<<< HEAD
-  res.render('login.ejs');
-=======
   res.render('login.ejs', {
     errors: req.flash('error')
   });
@@ -205,7 +163,6 @@ app.get("/profile", (req, res) => {
       errors: req.flash('error')})
   });
 
->>>>>>> feature/flash
 });
 
 app.post('/profile', (req, res) => {
@@ -235,51 +192,6 @@ app.post('/profile', (req, res) => {
 })
 
 app.post("/login", (req, res) => {
-<<<<<<< HEAD
-  const {
-    email
-  } = req.body;
-  const plainTextPasswordFromUser = req.body.password;
-  knex('users')
-    .select('id', 'password')
-    .where('email', email)
-    .limit(1)
-    .then((users) => {
-      if (users.length) {
-        console.log(users[0].id);
-        return Promise.all([
-          users[0].id,
-          bcrypt.compare(plainTextPasswordFromUser, users[0].password)
-        ]);
-      } else {
-        return Promise.reject(new Error('email no'))
-      }
-    })
-    .then(([userID, passwordMatches]) => {
-      if (passwordMatches) {
-        req.session.id = userID;
-        res.redirect('/homepage');
-      } else {
-        return Promise.reject(new Error('password no'));
-      }
-    })
-    .catch((err) => {
-      console.error(err);
-      req.flash('error', 'There was a problem logging you in :(');
-      res.redirect('/login');
-    });
-});
-
-//  .andWhere((bcrypt.compareSync(password, 'password')) === true)
-
-//     }
-//   } else {
-//     res.status(403).send("Not a valid login");
-//     res.redirect('/login');
-//   }
-// }
-
-=======
   const { email } = req.body;
   const plainTextPasswordFromUser  = req.body.password;
   if (!email || !plainTextPasswordFromUser) {
@@ -317,7 +229,6 @@ app.post("/login", (req, res) => {
   }
   });
 
->>>>>>> feature/flash
 
 app.post("/logout", (req, res) => {
   req.session = null;

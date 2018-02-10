@@ -2,23 +2,23 @@
 
 require('dotenv').config();
 
-const PORT          = process.env.PORT || 8080;
-const ENV           = process.env.ENV || "development";
-const express       = require("express");
-const bodyParser    = require("body-parser");
-const sass          = require("node-sass-middleware");
-const app           = express();
-const flash         = require('connect-flash');
-const knexConfig    = require("./knexfile");
-const knex          = require("knex")(knexConfig[ENV]);
-const morgan        = require('morgan');
-const knexLogger    = require('knex-logger');
+const PORT = process.env.PORT || 8080;
+const ENV = process.env.ENV || "development";
+const express = require("express");
+const bodyParser = require("body-parser");
+const sass = require("node-sass-middleware");
+const app = express();
+const flash = require('connect-flash');
+const knexConfig = require("./knexfile");
+const knex = require("knex")(knexConfig[ENV]);
+const morgan = require('morgan');
+const knexLogger = require('knex-logger');
 const cookieSession = require('cookie-session');
-const bcrypt        = require('bcrypt');
-const categorize    = require('./public/scripts/category');
+const bcrypt = require('bcrypt');
+const categorize = require('./public/scripts/category');
 
 // Seperated Routes for each Resource
-const usersRoutes = require("./routes/users");
+const usersRoutes = require("./routes/items");
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -29,7 +29,9 @@ app.use(morgan('dev'));
 app.use(knexLogger(knex));
 
 app.set("view engine", "ejs");
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 app.use("/styles", sass({
   src: __dirname + "/styles",
   dest: __dirname + "/public/styles",
@@ -49,7 +51,25 @@ app.use(cookieSession({
 app.use(flash());
 
 // Mount all resource routes
-app.use("/api/users", usersRoutes(knex));
+// gets a JSON of items table
+app.use("/api/items", usersRoutes(knex));
+
+
+
+
+function awesomeClassifier(input) {
+  // This intelligence is entirely artificial, fuck yeah.
+  var options = [
+    'watch',
+    'eat',
+    'read',
+    'buy'
+  ];
+  var index = Math.floor(Math.random() * 4);
+  return options[index];
+}
+
+
 
 // Home page
 app.get("/", (req, res) => {
@@ -57,18 +77,45 @@ app.get("/", (req, res) => {
 });
 
 app.get("/homepage", (req, res) => {
+
+  // get stuff from 'items' database
+
+  // for (let result of results) {
+
+  //   // todo: lodash - groupBy for categories
+
+  //   // todo: put the todo stuff into correct category container
+  //   // todo: user helper module to handle creation of new todo item
+
+  //   // todo: for EACH result, create a NEW html element to append into the category container
+  //   // todo: find the right category #id to append to
+  //   // todo: render 
+
+  //   console.log("stuff");
+
+  // }
+
   res.render("homepage.ejs");
 });
 
 
 app.post('/homepage', (req, res) => {
- const {text} = req.body;
- const newText = categorize(text);
- knex('items')
- .insert({description: text, category: newText, user_id: req.session.id})
- .then((result) => {
-   console.log(result)
- })
+  // const {text} = req;
+  const text = req.body.category;
+  const newText = categorize(text);
+  knex('items')
+    .insert({
+      description: text,
+      category: newText,
+      user_id: req.session.id
+    })
+    .then((result) => {
+      res.json({
+        category: newText
+      });
+      // res.redirect('/homepage');
+    });
+
 });
 
 app.get("/overlay", (req, res) => {
@@ -77,12 +124,18 @@ app.get("/overlay", (req, res) => {
 
 //user registration
 app.post("/register", (req, res) => {
-  const { registeremail, registerpassword } = req.body;
+  const {
+    registeremail,
+    registerpassword
+  } = req.body;
   knex('users')
-  .insert({ email: registeremail, password: bcrypt.hashSync(registerpassword, 10) })
-  .then(function (result) {
-      console.log("done")
-  })
+    .insert({
+      email: registeremail,
+      password: bcrypt.hashSync(registerpassword, 10)
+    })
+    .then(function (result) {
+      console.log("done");
+    });
   console.log(registeremail);
   req.session.id = id;
   res.redirect('/homepage');
@@ -90,50 +143,52 @@ app.post("/register", (req, res) => {
 
 //Login page
 app.get("/login", (req, res) => {
-  res.render('login.ejs')
+  res.render('login.ejs');
 });
 
 app.post("/login", (req, res) => {
-  const { email } = req.body;
-  const plainTextPasswordFromUser  = req.body.password;
- knex('users')
- .select('id', 'password')
- .where('email', email)
- .limit(1)
- .then((users) => {
-     if (users.length) {
-       console.log(users[0].id);
-       return Promise.all([
-         users[0].id,
-         bcrypt.compare(plainTextPasswordFromUser, users[0].password)
-       ]);
-       } else {
-          return Promise.reject(new Error('email no'))
-       }
-     })
-  .then(([userID, passwordMatches]) => {
-    if (passwordMatches) {
-    req.session.id = userID;
-    res.redirect('/homepage');
-    } else {
-      return Promise.reject(new Error('password no'));
-    }
-  })
-   .catch((err) => {
-     console.error(err);
-     req.flash('error', 'There was a problem logging you in :(');
-     res.redirect('/login');
-   });
-  });
+  const {
+    email
+  } = req.body;
+  const plainTextPasswordFromUser = req.body.password;
+  knex('users')
+    .select('id', 'password')
+    .where('email', email)
+    .limit(1)
+    .then((users) => {
+      if (users.length) {
+        console.log(users[0].id);
+        return Promise.all([
+          users[0].id,
+          bcrypt.compare(plainTextPasswordFromUser, users[0].password)
+        ]);
+      } else {
+        return Promise.reject(new Error('email no'))
+      }
+    })
+    .then(([userID, passwordMatches]) => {
+      if (passwordMatches) {
+        req.session.id = userID;
+        res.redirect('/homepage');
+      } else {
+        return Promise.reject(new Error('password no'));
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      req.flash('error', 'There was a problem logging you in :(');
+      res.redirect('/login');
+    });
+});
 
 //  .andWhere((bcrypt.compareSync(password, 'password')) === true)
 
-  //     }
-  //   } else {
-  //     res.status(403).send("Not a valid login");
-  //     res.redirect('/login');
-  //   }
-  // }
+//     }
+//   } else {
+//     res.status(403).send("Not a valid login");
+//     res.redirect('/login');
+//   }
+// }
 
 
 app.post("/logout", (req, res) => {
@@ -144,3 +199,5 @@ app.post("/logout", (req, res) => {
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
 });
+
+

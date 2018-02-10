@@ -10,7 +10,16 @@ const stopwords = require('stopword');
 const eatDocuments = ['i want to eat some fries',
   'i want to eat noodles',
   'i want some chinese food',
-  'i want to consume sushi'
+  'i want to consume sushi',
+  'i want to have a burger',
+  'i want to eat pizza',
+  'i would like a steak',
+  'eat a horse',
+  'drink a beer',
+  'have a chocolate bar',
+  'munch some chips',
+  'make a salad',
+  'make a sandwich'
 ];
 
 const buyDocuments = [
@@ -19,19 +28,36 @@ const buyDocuments = [
   'i need a new car',
   'i need to buy school supplies',
   'i need a new laptop',
-  'i need a new bike'
+  'i need a new bike',
+  'get a good book',
+  'grab groceries',
+  'buy some clothes',
+  'pick up a new muffler'
 ];
 
 const watchDocuments = [
-  'I want see the new batman movie',
-  'i need to watch black mirror'
+  'i want see the new batman movie',
+  'i need to watch black mirror',
+  'checkout lord of the rings',
+  'see the lion movie',
+  'watch an episode of the office',
+  'binge watch futurama',
+  'watch the new season of better call saul',
+  'see thor',
+  'watch george lucas new movie'
 ];
 
 
 const readDocuments = [
   'i want to read game of thrones',
   'i want to read the vancouver sun article',
-  'i want to read lotr'
+  'i want to read lotr',
+  'read girl with the dragon tattoo',
+  'scan the political article',
+  'read the newspaper',
+  'look through seventeen magazine',
+  'read a good cookbook',
+  'read a stephen king novel'
 ];
 
 // add the training data to corresponding category

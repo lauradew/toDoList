@@ -140,6 +140,7 @@ app.post('/profile', (req, res) => {
   } else {
     knex('users')
     .where('email', email_confirmation)
+    // .andWhere('email', '<>', email) //need to figure out how to check for emails already in the system
     .then((users) => {
       if (users.length === 1) {
         knex('users')

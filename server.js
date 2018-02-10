@@ -57,6 +57,10 @@ app.get("/", (req, res) => {
 });
 
 app.get("/homepage", (req, res) => {
+  if (!req.session.id) {
+    req.flash('error', 'No user logged in');
+    res.redirect('/login');
+  }
   res.render("homepage.ejs");
 });
 

@@ -1,9 +1,13 @@
 @import "variables";
-@import "homepage";
 @import "layout";
+@import "homepage";
 @import "login";
 @import "nav";
 @import "todo-items";
 @import "overlay";
 
 
+@font-face {
+  font-family: 'Montserrat';
+  src: url('https://fonts.googleapis.com/css?family=Montserrat:400,700,800,900');
+}

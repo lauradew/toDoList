@@ -74,8 +74,8 @@ function awesomeClassifier(input) {
 // Home page
 app.get("/", (req, res) => {
   res.render("index");
-});
 
+});
 app.get("/homepage", (req, res) => {
   if (!req.session.id) {
     req.flash('error', 'No user logged in');

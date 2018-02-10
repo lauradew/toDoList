@@ -77,6 +77,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/homepage", (req, res) => {
+<<<<<<< HEAD
 
   // get stuff from 'items' database
 
@@ -95,6 +96,12 @@ app.get("/homepage", (req, res) => {
 
   // }
 
+=======
+  if (!req.session.id) {
+    req.flash('error', 'No user logged in');
+    res.redirect('/login');
+  }
+>>>>>>> feature/flash
   res.render("homepage.ejs");
 });
 
@@ -124,6 +131,7 @@ app.get("/overlay", (req, res) => {
 
 //user registration
 app.post("/register", (req, res) => {
+<<<<<<< HEAD
   const {
     registeremail,
     registerpassword
@@ -139,14 +147,95 @@ app.post("/register", (req, res) => {
   console.log(registeremail);
   req.session.id = id;
   res.redirect('/homepage');
+=======
+  const { registeremail, registerpassword } = req.body;
+  if (!registeremail || !registerpassword) {
+    req.flash('error', 'Please Fill All Required Fields');
+    res.redirect('/login');
+  } else {
+  knex('users')
+  .where('email', registeremail)
+  .then((users) => {
+    if (users.length === 0) {
+      knex('users')
+      .insert({
+        email: registeremail,
+        password: bcrypt.hashSync(registerpassword, 10)
+      })
+      .then((users) => {
+        knex('users')
+        .max('id')
+        .then((id) => {
+          req.session.id = id[0].max
+          res.redirect('/homepage');
+        })
+      })
+    } else {
+      req.flash('error', 'User exists');
+      res.redirect('/login');
+    }
+  })
+ }
+>>>>>>> feature/flash
 });
+
 
 //Login page
 app.get("/login", (req, res) => {
+<<<<<<< HEAD
   res.render('login.ejs');
+=======
+  res.render('login.ejs', {
+    errors: req.flash('error')
+  });
 });
 
+//profile update page
+app.get("/profile", (req, res) => {
+  if (!req.session.id) {
+    req.flash('error', 'No user logged in');
+    res.redirect('/login');
+  }
+  knex('users')
+  .where('id', req.session.id)
+  .first('*')
+  .then((user) => {
+    res.render('useredit.ejs', {
+      email: user.email,
+      errors: req.flash('error')})
+  });
+
+>>>>>>> feature/flash
+});
+
+app.post('/profile', (req, res) => {
+  const {email, password, email_confirmation} = req.body;
+  if (!email || !email_confirmation || !password) {
+    req.flash('error', 'Please Fill All Required Fields');
+    res.redirect('/profile');
+  } else {
+    knex('users')
+    .where('email', email_confirmation)
+    // .andWhere('email', '<>', email) //need to figure out how to check for emails already in the system
+    .then((users) => {
+      if (users.length === 1) {
+        knex('users')
+        .where({id: req.session.id})
+        .update({
+          email: email,
+          password: bcrypt.hashSync(password, 10)})
+        .then()
+        res.redirect('/homepage')  
+      } else {
+          req.flash('error', 'No user by that email');
+          res.redirect('/profile');
+        }
+      })
+  } 
+})
+
 app.post("/login", (req, res) => {
+<<<<<<< HEAD
   const {
     email
   } = req.body;
@@ -190,6 +279,45 @@ app.post("/login", (req, res) => {
 //   }
 // }
 
+=======
+  const { email } = req.body;
+  const plainTextPasswordFromUser  = req.body.password;
+  if (!email || !plainTextPasswordFromUser) {
+    req.flash('error', 'Please Fill All Required Fields');
+    res.redirect('/login');
+  } else {
+ knex('users')
+ .select('id', 'password')
+ .where('email', email)
+ .limit(1)
+ .then((users) => {
+     if (users.length) {
+       console.log(users[0].id);
+       return Promise.all([
+         users[0].id,
+         bcrypt.compare(plainTextPasswordFromUser, users[0].password)
+       ]);
+       } else {
+          return Promise.reject(new Error('email no'))
+       }
+     })
+  .then(([userID, passwordMatches]) => {
+    if (passwordMatches) {
+    req.session.id = userID;
+    res.redirect('/homepage');
+    } else {
+      return Promise.reject(new Error('password no'));
+    }
+  })
+   .catch((err) => {
+     console.error(err);
+     req.flash('error', 'NOT A VALID LOGIN.');
+     res.redirect('/login');
+   });
+  }
+  });
+
+>>>>>>> feature/flash
 
 app.post("/logout", (req, res) => {
   req.session = null;

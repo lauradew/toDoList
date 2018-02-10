@@ -18,7 +18,7 @@ const bcrypt = require('bcrypt');
 const categorize = require('./public/scripts/category');
 
 // Seperated Routes for each Resource
-const usersRoutes = require("./routes/users");
+const usersRoutes = require("./routes/items");
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -51,7 +51,8 @@ app.use(cookieSession({
 app.use(flash());
 
 // Mount all resource routes
-app.use("/api/users", usersRoutes(knex));
+// gets a JSON of items table
+app.use("/api/items", usersRoutes(knex));
 
 // Home page
 app.get("/", (req, res) => {
@@ -59,14 +60,31 @@ app.get("/", (req, res) => {
 });
 
 app.get("/homepage", (req, res) => {
+
+  // get stuff from 'items' database
+
+  // for (let result of results) {
+
+  //   // todo: lodash - groupBy for categories
+
+  //   // todo: put the todo stuff into correct category container
+  //   // todo: user helper module to handle creation of new todo item
+
+  //   // todo: for EACH result, create a NEW html element to append into the category container
+  //   // todo: find the right category #id to append to
+  //   // todo: render 
+
+  //   console.log("stuff");
+
+  // }
+
   res.render("homepage.ejs");
 });
 
 
 app.post('/homepage', (req, res) => {
-  const {
-    text
-  } = req.body;
+  // const {text} = req;
+  const text = req.body.category;
   const newText = categorize(text);
   knex('items')
     .insert({
@@ -75,8 +93,9 @@ app.post('/homepage', (req, res) => {
       user_id: req.session.id
     })
     .then((result) => {
-      console.log(result)
-    })
+      // res.redirect('/homepage');
+    });
+
 });
 
 app.get("/overlay", (req, res) => {

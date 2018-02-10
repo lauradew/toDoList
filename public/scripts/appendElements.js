@@ -16,7 +16,7 @@ $(document).ready(function () {
     const taskText = $(this).find('[name="text"]').val();
 
     // append user input to button text
-    const newTask = $('<button type="button" class="btn btn-info btn-lg">').text(taskText);
+    const newTask = $('<button type="button" class="btn btn-info btn-lg" id="modal">').text(taskText);
     // const newTask = $('<button>').text(taskText);
     // for styling purposes
     newTask.addClass("toDoItem");

@@ -6,7 +6,7 @@ $(() => {
     for(item of items) {
       // create a new button for the modal
 
-      const toDoItem = $(`<button type="button" class="btn btn-info btn-lg" data-toggle="modal">`).addClass('toDoItem');
+      const toDoItem = $(`<button type="button" class="btn btn-info btn-lg" id="modal" data-toggle="modal">`).addClass('toDoItem');
       toDoItem.attr('data-title', item.description);
       // TODO: create the modal to be toggled by the button
       // const modal = $('<div>').addClass('modal fade').attr('id', `modal${item.id}`).attr('role', 'dialog');

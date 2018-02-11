@@ -55,6 +55,11 @@ $(document).ready(function () {
 
   $('body').on('click', '.toDoItem', function(e) {
     $('#myModal').modal("show");
+
+    // first clear the modal body before displaying stuff
+    // let modalBody = $('#myModal').find('ul').clear();
+    $('#myModal').find('li').remove();
+
     const description = $(this).data('title');
     let links = $(this).data('resource-links').split(',');
 
@@ -62,12 +67,11 @@ $(document).ready(function () {
     unorderedList.addClass('list-elements');
 
     for (let link of links) {
-      let listElement = $('<li>').append(link);
-      unorderedList.append(listElement);
+      if (link) {
+        let listElement = $('<li>').append(link);
+        unorderedList.append(listElement);
+      }
     }
-
-    console.log(unorderedList);
-
 
     $('#myModal').find('.modal-title').text(description);
     $('#myModal').find('.modal-body').append(unorderedList);

@@ -16,11 +16,10 @@ const knexLogger = require('knex-logger');
 const cookieSession = require('cookie-session');
 const bcrypt = require('bcrypt');
 const categorize = require('./public/scripts/category');
-const google = require('google-query');
+
 
 // Seperated Routes for each Resource
-const itemsRoute = require("./routes/items");
-const resourcesRoute = require("./routes/resources");
+const usersRoutes = require("./routes/items");
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -54,9 +53,9 @@ app.use(flash());
 
 // Mount all resource routes
 // gets a JSON of items table
+app.use("/api/items", usersRoutes(knex));
 
-app.use("/api/items", itemsRoute(knex));
-app.use("/api/resources", resourcesRoute(knex));
+
 
 
 function awesomeClassifier(input) {
@@ -230,6 +229,24 @@ app.post("/login", (req, res) => {
    });
   }
   });
+
+// //category update page
+// app.get("/edit", (req, res) => {
+//   if (!req.session.id) {
+//     req.flash('error', 'No user logged in');
+//     res.redirect('/login');
+//   }
+//   knex('resources')
+//     .where('id', req.session.id)
+//     .first('*')
+//     .then((user) => {
+//       res.render('categoryedit.ejs', {
+//         email: user.email,
+//         errors: req.flash('error')
+//       })
+//     });
+
+// });
 
 
 app.post("/logout", (req, res) => {

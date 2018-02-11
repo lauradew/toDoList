@@ -12,7 +12,11 @@
   font-weight: 700;
 }
 
-#nav-bar #doForm {
+#half {
+  width: 40%;
+}
+
+#doForm {
   height: 50px;
   margin-top: 8px;
 }
@@ -26,35 +30,33 @@
   height: 70%;
 }
 
-/*#navButtons {
-  margin: 8px;
-  display: inline-flex;
+#navButtons {
+  margin-top: 1.5%;
+  text-align: center;
   height: 30px;
 
-}*/
+}
 
 #addTask {
-  height: 30px;
   border-radius: 4px;
   background-color: $brand-color;
   color: $secondary-color;
-  padding: 0.2em 2em;
+  padding: 0.1em 1em;
 }
 
 #logout {
   top: 30%;
-  margin-right: 10%;
   border-radius: 4px;
   background-color: $brand-color;
   color: $secondary-color;
-  padding: 0.2em 2em;
+  padding: 0.1em 1em;
 }
 
 #edit {
   border-radius: 4px;
   background-color: $brand-color;
   color: $secondary-color;
-  padding: 0.2em 2em;
+  padding: 0.1em 1em;
 }
 
 /*#nav-bar .header {

@@ -98,15 +98,15 @@
                 <!-- <span class="caret"></span> -->
               </button>
               <ul class="dropdown-menu">
-                <form action="/edit" id="editCategory" method="POST">
-                  <select name="changeCategory">
-                <li><option id="new">Eat.</option></li>
-                <li><option id="new">Watch.</option></li>
-                <li><option id="new">Buy.</option></li>
-                <li><option id="new">Read.</option></li>
-              <input type="submit" value="submit">
-              </select>
-            </form>
+                <form action="/edit" id="editCatForm" method="POST">
+                  <select class="form-control" id="editCategory">
+                    <li><option value="eat">Eat.</option></li>
+                    <li><option value="watch">Watch.</option></li>
+                    <li><option value="buy">Buy.</option></li>
+                    <li><option value="read">Read.</option></li>
+                    <input type="submit" value="submit">
+                  </select>
+                </form>
               </ul>
             </div>
             <!-- <form action="/edit" method="GET">

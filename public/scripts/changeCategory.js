@@ -3,13 +3,16 @@
 
 $(document).ready(function () {
 
-$('#editCategory').on('submit', function (e) {
-
-    console.log("test", e);
+$('#editCatForm').on('submit', function (e) {
     // hijack /post request from submit
     e.preventDefault();
+    newCat = $("#editCategory").find(":selected").val();
+    description = $(".modal-title").text();
+    // console.log(description);
+    $.post('/editCategory', {newCategory: newCat, currentDescription: description}).done((response) => {
+    })
 
-
+      window.location.reload("/homepage");
   });
 
 });

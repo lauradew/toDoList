@@ -249,8 +249,24 @@ app.post("/login", (req, res) => {
 
 // });
 
-app.post("/edit", (req, res) => {
-  // console.log(req.body);
+app.post("/editCategory", (req, res) => {
+  // console.log("hi");
+  const newCat = req.body.newCategory;
+  const description = req.body.currentDescription;
+  knex('items')
+    .where('description', description)
+    .update({
+      category: newCat
+    })
+    .then()
+  });
+
+  // knex('items')
+  //   .where()
+
+  // res.json({
+  //   text: hello
+  // });
   // if (!req.session.id) {
   //   req.flash('error', 'No user logged in');
   //   res.redirect('/login');
@@ -265,7 +281,7 @@ app.post("/edit", (req, res) => {
   //     })
   //   });
 
-});
+// });
 
 
 

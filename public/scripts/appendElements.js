@@ -84,9 +84,19 @@ $(document).ready(function () {
       }
     }
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+console.log(description);
+=======
+    console.log(unorderedList);
+
+
+=======
+>>>>>>> 0c74d540af57d6e1c70a83a5ea3ac237b6db25a3
     $('#myModal').find('.modal-title').text(description);
     $('#myModal').find('.modal-body').append(unorderedList);
 
+>>>>>>> 36c4c2424c3ae7a42f0de62fef884115acd838e3
   });
 
 });

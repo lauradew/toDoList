@@ -261,6 +261,16 @@ app.post("/editCategory", (req, res) => {
     .then()
   });
 
+app.post("/delete", (req, res) => {
+  const description = req.body.currentDescription;
+  knex('items')
+    .where('description', description)
+    .del()
+    .then()
+});
+
+
+
   // knex('items')
   //   .where()
 

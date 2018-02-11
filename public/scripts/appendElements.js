@@ -59,7 +59,6 @@ $(document).ready(function () {
     
     $('#myModal').find('.modal-body').text('I\'m inside the body and changin stuff!!');
 
-
   });
 
 });

@@ -16,9 +16,11 @@ const knexLogger = require('knex-logger');
 const cookieSession = require('cookie-session');
 const bcrypt = require('bcrypt');
 const categorize = require('./public/scripts/category');
+const google = require('google-query');
 
 // Seperated Routes for each Resource
-const usersRoutes = require("./routes/items");
+const itemsRoute = require("./routes/items");
+const resourcesRoute = require("./routes/resources");
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -52,9 +54,9 @@ app.use(flash());
 
 // Mount all resource routes
 // gets a JSON of items table
-app.use("/api/items", usersRoutes(knex));
 
-
+app.use("/api/items", itemsRoute(knex));
+app.use("/api/resources", resourcesRoute(knex));
 
 
 function awesomeClassifier(input) {

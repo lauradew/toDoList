@@ -53,6 +53,7 @@ $(document).ready(function () {
     $('#myModal').modal("show");
     const description = $(this).data('title');
     $('#myModal').find('.modal-title').text(description);
+    
     $('#myModal').find('.modal-body').text('I\'m inside the body and changin stuff!!');
 
 

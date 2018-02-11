@@ -33,10 +33,7 @@ $(() => {
             // modalContent.append(closeHeader);
             // modal.append(modalContent);
             // toDoItem.append(modal);
-            
-            console.log("LINK_ID: ", resource.item_id);
-            console.log("ITEM_ID: ", item.id);
-
+        
             toDoItem.text(item.description).appendTo($(`#${item.category}`));
             // console.log(item);
           }

@@ -21,6 +21,7 @@ $(() => {
 
         const toDoItem = $(`<button type="button" class="btn btn-info btn-lg" id="modal" data-toggle="modal">`).addClass('toDoItem');
         toDoItem.attr('data-title', item.description);
+        toDoItem.attr('data-resource-links', linkArray);
         // TODO: create the modal to be toggled by the button
         // const modal = $('<div>').addClass('modal fade').attr('id', `modal${item.id}`).attr('role', 'dialog');
         // toDoItem.attr('data-target', `modal${item.id}`);
@@ -35,9 +36,6 @@ $(() => {
         // modalContent.append(closeHeader);
         // modal.append(modalContent);
         // toDoItem.append(modal);
-
-        console.log(linkArray);
-
         toDoItem.text(item.description).appendTo($(`#${item.category}`));
         // console.log(item);
 

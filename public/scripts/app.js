@@ -9,11 +9,14 @@ $(() => {
       url: "/api/resources"
     }).done((resources) => {
       for (item of items) {
+        let linkArray = [];
         for (resource of resources) {
           // create a new button for the modal
           
 
           if (resource.item_id === item.id) {
+
+            
             const toDoItem = $(`<button type="button" class="btn btn-info btn-lg" id="modal" data-toggle="modal">`).addClass('toDoItem');
             toDoItem.attr('data-title', item.description);
             // TODO: create the modal to be toggled by the button

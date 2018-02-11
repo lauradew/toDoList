@@ -19,20 +19,30 @@
                 <% } %>
                     <% } %>
 
+    <div id="main">
+        <b>TODO.</b>
+    </div>
+    <main id="register">
+        <section class="header">
+            <p>Update your profile.</p>
+        </section>
+ 
+
     <form class="update" action="/profile" method="POST">
-        <p>
+        <p class="email_confirmation">
             <label for="email_confirmation" value='email'>Email Confirmation</label>
-            <input type="email" name="email_confirmation">
+            <input class="email_confirmation" type="email" name="email_confirmation">
         </p>
-        <p>
+        <p class="email">
             <label for="email" value='<%=email %>'>Email Update</label>
-            <input type="email" name='email'>
+            <input class="email" type="email" name='email'>
         </p>
-        <p>
+        <p class="password">
             <label for="password">Password Update</label>
-            <input type="password" name='password'>
+            <input class="password" type="password" name='password'>
         </p>
             <input type="submit" value="Update">
     </form>
+    </main>
 </body>
 </html>

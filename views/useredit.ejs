@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>To Update</title>
+    <link rel="stylesheet" href="/styles/edituser.css" type="text/css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+
 </head>
 <body>
         <% if (errors.length) { %>
@@ -15,20 +19,30 @@
                 <% } %>
                     <% } %>
 
-    <form action="/profile" method="POST">
-        <p>
+    <div id="main">
+        <b>TODO.</b>
+    </div>
+    <main id="register">
+        <section class="header">
+            <p>Update your profile.</p>
+        </section>
+ 
+
+    <form class="update" action="/profile" method="POST">
+        <p class="email_confirmation">
             <label for="email_confirmation" value='email'>Email Confirmation</label>
-            <input type="email" name="email_confirmation">
+            <input class="email_confirmation" type="email" name="email_confirmation">
         </p>
-        <p>
+        <p class="email">
             <label for="email" value='<%=email %>'>Email Update</label>
-            <input type="email" name='email'>
+            <input class="email" type="email" name='email'>
         </p>
-        <p>
+        <p class="password">
             <label for="password">Password Update</label>
-            <input type="password" name='password'>
+            <input class="password" type="password" name='password'>
         </p>
             <input type="submit" value="Update">
     </form>
+    </main>
 </body>
 </html>

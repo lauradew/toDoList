@@ -58,7 +58,7 @@ $(document).ready(function () {
 
     // first clear the modal body before displaying stuff
     // let modalBody = $('#myModal').find('ul').clear();
-    $('#myModal').find('li').remove();
+    $('#myModal').find('.modal-body li').remove();
 
     const description = $(this).data('title');
     let links = $(this).data('resource-links').split(',');

@@ -29,9 +29,15 @@ $(() => {
         // const modalContent = $('<div>').addClass('modal-content');
         // const modalHeader = $('<div>').addClass('modal-header').text(item.id);
 
+
         // const closeHeader = $('<button>').addClass('close');
         // closeHeader.attr('data-dismiss', 'modal' );
         // closeHeader.text('&times;');
+
+            // modalContent.append(closeHeader);
+            // modal.append(modalContent);
+            // toDoItem.append(modal);
+
 
         // modalContent.append(closeHeader);
         // modal.append(modalContent);

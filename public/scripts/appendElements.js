@@ -8,14 +8,25 @@
 
 $(document).ready(function () {
 
+    function flashMessage(message) {
+    $("#flash").text(message);
+    setTimeout(function() {
+      $("#flash").text("");
+    }, 4000);
+  }
   // TODO: display correct modal on click of button
   $('#doForm').on('submit', function (e) {
 
     // hijack /post request from submit
     e.preventDefault();
 
+
     // get the user input from the form
-    const taskText = $(this).find('[name="text"]').val();
+    const taskText = $(this).find('[name="text"]').val().trim();
+    if (taskText.length === 0) {
+      flashMessage("Form may not be empty.");
+      return;
+    }
 
     // append user input to button text
     const newTask = $('<button type="button" class="btn btn-info btn-lg" id="modal">').text(taskText);

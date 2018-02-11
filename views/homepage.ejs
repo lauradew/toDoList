@@ -14,20 +14,6 @@
 
   <body>
     <nav id="nav-bar">
-      <!-- <h1>To...</h1>
-      <div id="inputcontainer">
-      <form action="/homepage" id="doForm" method="POST">
-        <input type="text" id="do" placeholder="DO.">
-      </div>
-      <div id="navbuttons">
-        <input type="submit" id="addtask" value="add task.">
-      </form>
-      <form action="/logout" method="POST">
-        <button type="submit" id="logoutbutton">
-         logout.
-        </button>
-      </form>
-      </div>-->
       <div class="row">
         <dl>
           <dd fourth>
@@ -38,6 +24,7 @@
         <form class="text" id="doForm" action="/homepage" method="POST">
           <input class="text" type="text" name="text" id="do" placeholder="Do.">
         </div>
+              <div id="flash"></div>
       </dd>
       <dd fourth class="row" id="navButtons">
           <input type="submit" value="Add task" id="addTask">
@@ -98,7 +85,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <h4 class="modal-title">Modal Header</h4>
-            <button type="button" class="close" data-dismiss="modal">&times;</button> 
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
           <div class="modal-body">
             <p>SMART API STUFF GETTING IT...</p>
@@ -115,7 +102,7 @@
                 <li><a href="#">Read.</a></li>
               </ul>
             </div>
-            <!-- <form action="/edit" method="GET">        
+            <!-- <form action="/edit" method="GET">
                <input type="submit" value="Change Category." id="editcategory">
             </form> -->
             <!-- <input type="submit" value="Close." class="btn btn-default" data-dismiss="modal"> -->

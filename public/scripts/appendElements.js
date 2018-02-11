@@ -52,13 +52,25 @@ $(document).ready(function () {
 
   // shows the modal on click of each category item
   // FIXME: only work on category items - activates on close buttons in the modal as well
+
   $('body').on('click', '.toDoItem', function(e) {
     $('#myModal').modal("show");
     const description = $(this).data('title');
-    $('#myModal').find('.modal-title').text(description);
-    
-    $('#myModal').find('.modal-body').text('I\'m inside the body and changin stuff!!');
+    let links = $(this).data('resource-links').split(',');
 
+    let unorderedList = $('<ul>');
+    unorderedList.addClass('list-elements');
+
+    for (let link of links) {
+      let listElement = $('<li>').append(link);
+      unorderedList.append(listElement);
+    }
+
+    console.log(unorderedList);
+
+
+    $('#myModal').find('.modal-title').text(description);
+    $('#myModal').find('.modal-body').append(unorderedList);
 
   });
 

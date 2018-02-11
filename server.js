@@ -184,13 +184,13 @@ app.post('/profile', (req, res) => {
           email: email,
           password: bcrypt.hashSync(password, 10)})
         .then()
-        res.redirect('/homepage')  
+        res.redirect('/homepage')
       } else {
           req.flash('error', 'No user by that email');
           res.redirect('/profile');
         }
       })
-  } 
+  }
 })
 
 app.post("/login", (req, res) => {
@@ -232,7 +232,7 @@ app.post("/login", (req, res) => {
   });
 
 // //category update page
-// app.get("/edit", (req, res) => {
+// app.post("/edit", (req, res) => {
 //   if (!req.session.id) {
 //     req.flash('error', 'No user logged in');
 //     res.redirect('/login');
@@ -248,6 +248,42 @@ app.post("/login", (req, res) => {
 //     });
 
 // });
+
+app.post("/editCategory", (req, res) => {
+  // console.log("hi");
+  const newCat = req.body.newCategory;
+  const description = req.body.currentDescription;
+  knex('items')
+    .where('description', description)
+    .update({
+      category: newCat
+    })
+    .then()
+  });
+
+  // knex('items')
+  //   .where()
+
+  // res.json({
+  //   text: hello
+  // });
+  // if (!req.session.id) {
+  //   req.flash('error', 'No user logged in');
+  //   res.redirect('/login');
+  // }
+  // knex('resources')
+  //   .where('id', req.session.id)
+  //   .first('*')
+  //   .then((user) => {
+  //     res.render('categoryedit.ejs', {
+  //       email: user.email,
+  //       errors: req.flash('error')
+  //     })
+  //   });
+
+// });
+
+
 
 
 app.post("/logout", (req, res) => {

@@ -16,7 +16,6 @@ const knexLogger = require('knex-logger');
 const cookieSession = require('cookie-session');
 const bcrypt = require('bcrypt');
 const categorize = require('./public/scripts/category');
-const google = require('google-query');
 
 // Seperated Routes for each Resource
 const itemsRoute = require("./routes/items");

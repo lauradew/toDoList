@@ -15,6 +15,7 @@
 }
 
 #nav-bar h1 {
+  margin-top: $mtop;
   margin-left: 20%;
   font-weight: 700;
 }
@@ -25,34 +26,37 @@
 
 #doForm {
   height: 50px;
-  margin-top: 8px;
 }
 
 #do {
-  width: 95%;
+  margin-top: $mtop;
+  margin-left: 50px;
+  width: 100%;
   text-align: center;
-  margin: 8px;
   border: 1px solid $secondary-color;
   border-radius: 4px;
   height: 70%;
 }
 
+#addTask {
+  margin-top: $mtop;
+  height: 30px;
+  border-radius: 4px;
+  background-color: $brand-color;
+  color: $secondary-color;
+  padding: 0.1em 1em;
+  margin-right: 40px;
+
+}
+
 #navButtons {
-  margin-top: 1.5%;
+  margin-top: $mtop;
   text-align: center;
   height: 30px;
 
 }
 
-#addTask {
-  border-radius: 4px;
-  background-color: $brand-color;
-  color: $secondary-color;
-  padding: 0.1em 1em;
-}
-
 #logout {
-  top: 30%;
   border-radius: 4px;
   background-color: $brand-color;
   color: $secondary-color;

@@ -46,6 +46,10 @@
   border: 1px solid $secondary-color;
 }
 
+.modal-body {
+  word-wrap: break-word;
+}
+
 .modal-footer button {
   border-radius: 8px;
   font-size: small;
@@ -61,3 +65,4 @@
   color: $secondary-color;
   border: 1px solid $secondary-color;
 }
+

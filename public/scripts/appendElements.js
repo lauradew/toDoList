@@ -8,7 +8,7 @@
 
 $(document).ready(function () {
 
-    function flashMessage(message) {
+  function flashMessage(message) {
     $("#flash").text(message);
     setTimeout(function() {
       $("#flash").text("");
@@ -83,7 +83,6 @@ $(document).ready(function () {
         unorderedList.append(listElement);
       }
     }
-
 
     $('#myModal').find('.modal-title').text(description);
     $('#myModal').find('.modal-body').append(unorderedList);

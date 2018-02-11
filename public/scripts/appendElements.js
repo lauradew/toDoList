@@ -8,14 +8,25 @@
 
 $(document).ready(function () {
 
+    function flashMessage(message) {
+    $("#flash").text(message);
+    setTimeout(function() {
+      $("#flash").text("");
+    }, 4000);
+  }
   // TODO: display correct modal on click of button
   $('#doForm').on('submit', function (e) {
 
     // hijack /post request from submit
     e.preventDefault();
 
+
     // get the user input from the form
-    const taskText = $(this).find('[name="text"]').val();
+    const taskText = $(this).find('[name="text"]').val().trim();
+    if (taskText.length === 0) {
+      flashMessage("Form may not be empty.");
+      return;
+    }
 
     // append user input to button text
     const newTask = $('<button type="button" class="btn btn-info btn-lg" id="modal">').text(taskText);
@@ -55,6 +66,11 @@ $(document).ready(function () {
 
   $('body').on('click', '.toDoItem', function(e) {
     $('#myModal').modal("show");
+
+    // first clear the modal body before displaying stuff
+    // let modalBody = $('#myModal').find('ul').clear();
+    $('#myModal').find('.modal-body li').remove();
+
     const description = $(this).data('title');
     let links = $(this).data('resource-links').split(',');
 
@@ -62,16 +78,21 @@ $(document).ready(function () {
     unorderedList.addClass('list-elements');
 
     for (let link of links) {
-      let listElement = $('<li>').append(link);
-      unorderedList.append(listElement);
+      if (link) {
+        let listElement = $('<li>').append(link);
+        unorderedList.append(listElement);
+      }
     }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 console.log(description);
 =======
     console.log(unorderedList);
 
 
+=======
+>>>>>>> 0c74d540af57d6e1c70a83a5ea3ac237b6db25a3
     $('#myModal').find('.modal-title').text(description);
     $('#myModal').find('.modal-body').append(unorderedList);
 

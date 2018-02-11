@@ -97,14 +97,28 @@
         <!-- Modal content-->
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
             <h4 class="modal-title">Modal Header</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button> 
           </div>
           <div class="modal-body">
             <p>Some text in the modal.</p>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <div class="dropdown">
+              <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Change Category
+                <!-- <span class="caret"></span> -->
+              </button>
+              <ul class="dropdown-menu">
+                <li><a href="#">Eat.</a></li>
+                <li><a href="#">Watch.</a></li>
+                <li><a href="#">Buy.</a></li>
+                <li><a href="#">Buy.</a></li>
+              </ul>
+            </div>
+            <!-- <form action="/edit" method="GET">        
+               <input type="submit" value="Change Category." id="editcategory">
+            </form> -->
+            <!-- <input type="submit" value="Close." class="btn btn-default" data-dismiss="modal"> -->
           </div>
 
         </div>

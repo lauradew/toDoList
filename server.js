@@ -17,6 +17,7 @@ const cookieSession = require('cookie-session');
 const bcrypt = require('bcrypt');
 const categorize = require('./public/scripts/category');
 
+
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/items");
 
@@ -228,6 +229,24 @@ app.post("/login", (req, res) => {
    });
   }
   });
+
+//category update page
+app.get("/edit", (req, res) => {
+  if (!req.session.id) {
+    req.flash('error', 'No user logged in');
+    res.redirect('/login');
+  }
+  knex('items')
+    .where('id', req.session.id)
+    .first('*')
+    .then((user) => {
+      res.render('categoryedit.ejs', {
+        email: user.email,
+        errors: req.flash('error')
+      })
+    });
+
+});
 
 
 app.post("/logout", (req, res) => {

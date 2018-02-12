@@ -77,10 +77,12 @@ $(document).ready(function () {
     const description = $(this).data('title');
     let links = $(this).data('resource-links').split(',');
 
-    let unorderedList = $('<ul>');
-    unorderedList.addClass('list-elements');
+    // let unorderedList = $('<ul>');
+    // unorderedList.addClass('list-elements');
 
-    let metadata = [];
+    // let metadata = [];
+
+    const linkContainer = $('<div>').addClass('modal-content');
 
     for (let link of links) {
       if (link) {
@@ -89,17 +91,33 @@ $(document).ready(function () {
           method: "GET",
           url: `http://api.linkpreview.net/?key=5a8102ca948bda81b8d7fe836ce0099f35285c4960522&q=${link}`
         }).done((meta) => {
-          metadata.push(meta);
+          
+          const linkPreview = $('<div>').addClass('card');
+
+          const metaTitle = $('<h3>').text(meta.title);
+          const metaDescription = $('<p>').text(meta.description);
+          const metaImage = $('<img>').addClass('img-thumbnail').attr('src', meta.image);
+          metaImage.attr('width', '300').attr('height', '300');
+          const metaLink = $('<a>').attr('href', meta.url).text(meta.url);
+          
+
+          linkPreview.append(metaTitle, metaDescription, metaImage);
+          
+
+          linkContainer.append(linkPreview);
+
+          // let listElement = $('<iframe>');
+          // listElement.append(meta);
+          // unorderedList.append(listElement);
+
         });
       
       }
     }
 
-    let listElement = $('<li>').append(metadata);
-    unorderedList.append(listElement);
-
+    $('#myModal').find('.modal-body').empty();
     $('#myModal').find('.modal-title').text(description);
-    $('#myModal').find('.modal-body').append(unorderedList);
+    $('#myModal').find('.modal-body').append(linkContainer);
 
   });
 

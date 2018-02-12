@@ -33,7 +33,13 @@ exports.seed = function(knex, Promise) {
         knex('items').insert({ description: 'Immersion blender', category: 'buy', user_id: 3 }),
         knex('items').insert({ description: 'Buy harry potter DVD collection', category: 'buy', user_id: 1 }),
         knex('items').insert({ description: 'Plant lightbulb', category: 'buy', user_id: 1 }),
-        knex('items').insert({ description: 'Get 6m usb lightning cable', category: 'buy', user_id: 2 })
+        knex('items').insert({ description: 'Get 6m usb lightning cable', category: 'buy', user_id: 2 }),
+
+        knex('items').insert({ description: 'Buy green tea matcha', category: 'buy', user_id: 4 }),
+        knex('items').insert({ description: 'Eat some penut Butter', category: 'eat', user_id: 4 }),
+        knex('items').insert({ description: 'Read green eggs and ham', category: 'read', user_id: 4 }),
+        knex('items').insert({ description: 'Watch Lord of the Rings', category: 'watch', user_id: 4 }),
+        knex('items').insert({ description: 'JAZZ HANDS 🤗🤗🤗🤗🤗🤗🤗🤗🤗🤗🤗🤗🤗🤗🤗🤗🤗', category: 'watch', user_id: 4 })
       ]);
     });
 };

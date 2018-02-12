@@ -90,11 +90,8 @@ $(document).ready(function () {
           url: `http://api.linkpreview.net/?key=5a8102ca948bda81b8d7fe836ce0099f35285c4960522&q=${link}`
         }).done((meta) => {
           metadata.push(meta);
-          console.log(meta);
-
         });
       
-        
       }
     }
 

@@ -84,7 +84,6 @@ $(document).ready(function () {
 
     for (let link of links) {
       if (link) {
-<<<<<<< HEAD
 
         $.ajax({
           method: "GET",
@@ -94,15 +93,8 @@ $(document).ready(function () {
           console.log(meta);
 
         });
+      
         
-        
-        // let listElement = $('<li>').append(link);
-        
-=======
-        console.log(link);
-        let listElement = $('<li>').append(link);
-        unorderedList.append(listElement);
->>>>>>> 89fc51d639528d6e731fe245eeda1534be4e0d19
       }
     }
 

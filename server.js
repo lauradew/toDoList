@@ -58,11 +58,6 @@ app.use(flash());
 app.use("/api/items", itemsRoute(knex));
 app.use("/api/resources", resourcesRoute(knex));
 app.use("/api/linkpreview", linkPreviewRoute());
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 89fc51d639528d6e731fe245eeda1534be4e0d19
 
 function awesomeClassifier(input) {
   // This intelligence is entirely artificial, fuck yeah.

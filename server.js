@@ -22,6 +22,7 @@ const google = require('google-query');
 // Seperated Routes for each Resource
 const itemsRoute = require("./routes/items");
 const resourcesRoute = require("./routes/resources");
+const linkPreviewRoute = require("./routes/linkPreview");
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -56,6 +57,7 @@ app.use(flash());
 // gets a JSON of items table
 app.use("/api/items", itemsRoute(knex));
 app.use("/api/resources", resourcesRoute(knex));
+app.use("/api/linkpreview", linkPreviewRoute());
 
 function awesomeClassifier(input) {
   // This intelligence is entirely artificial, fuck yeah.

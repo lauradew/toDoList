@@ -8,9 +8,9 @@
 
 $(document).ready(function () {
 
-    function flashMessage(message) {
+  function flashMessage(message) {
     $("#flash").text(message);
-    setTimeout(function() {
+    setTimeout(function () {
       $("#flash").text("");
     }, 4000);
   }
@@ -34,7 +34,9 @@ $(document).ready(function () {
     // for styling purposes
     newTask.addClass("toDoItem");
 
-    $.post('/', {category: taskText}).done((response) => {
+    $.post('/', {
+      category: taskText
+    }).done((response) => {
       console.log("got a response:", JSON.stringify(response));
       const category = response.category;
 
@@ -64,7 +66,8 @@ $(document).ready(function () {
   // shows the modal on click of each category item
   // FIXME: only work on category items - activates on close buttons in the modal as well
 
-  $('body').on('click', '.toDoItem', function(e) {
+  $('body').on('click', '.toDoItem', function (e) {
+
     $('#myModal').modal("show");
 
     // first clear the modal body before displaying stuff
@@ -79,6 +82,7 @@ $(document).ready(function () {
 
     for (let link of links) {
       if (link) {
+        console.log(link);
         let listElement = $('<li>').append(link);
         unorderedList.append(listElement);
       }
@@ -92,4 +96,3 @@ $(document).ready(function () {
 });
 
 // $('#' + result.category).append(result.description);
-

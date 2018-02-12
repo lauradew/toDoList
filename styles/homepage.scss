@@ -1,5 +1,17 @@
 @import "variables";
 
+body, html {
+  height: 100%;
+}
+.bg {
+  background-image: url("http://i.imgur.com/P8Mpd9m.jpg")
+  height: 100%;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .listContainer {
   padding: 24px;
 }

@@ -99,8 +99,8 @@ app.post('/', (req, res) => {
       var url_str = url_list.slice(0, 3);
       for(const url of url_str) {
         knex('resources')
-        // .join('items', 'resources.item_id', '=', 'items_id')
-        .insert([{link: url}, {item_id: itemID}])
+        .insert([{link: url}])
+        .update('item_id', itemID)
         .then()
       }
     });

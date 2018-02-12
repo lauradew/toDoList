@@ -12,7 +12,7 @@ $('#editCatForm').on('submit', function (e) {
     $.post('/editCategory', {newCategory: newCat, currentDescription: description}).done((response) => {
     })
 
-      window.location.reload("/homepage");
+      window.location.reload("/");
   });
 
 });

@@ -6,7 +6,7 @@ $(document).ready(function () {
         description = $(".modal-title").text();
         $.post('/delete', {currentDescription: description}).done((response) => {
         })
-        window.location.reload("/homepage");
+        window.location.reload("/");
     });
 
 });

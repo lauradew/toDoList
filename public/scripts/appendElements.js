@@ -34,7 +34,7 @@ $(document).ready(function () {
     // for styling purposes
     newTask.addClass("toDoItem");
 
-    $.post('/homepage', {category: taskText}).done((response) => {
+    $.post('/', {category: taskText}).done((response) => {
       console.log("got a response:", JSON.stringify(response));
       const category = response.category;
 
@@ -54,7 +54,7 @@ $(document).ready(function () {
       // TODO: append user data to new modal to be displayed
       // $(`#${response.category}`).append(newTask);
 
-      window.location.reload("/homepage");
+      window.location.reload("/");
 
     });
 

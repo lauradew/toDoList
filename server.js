@@ -72,13 +72,7 @@ function awesomeClassifier(input) {
 }
 
 
-
-// Home page
 app.get("/", (req, res) => {
-  res.render("index");
-
-});
-app.get("/homepage", (req, res) => {
   if (!req.session.id) {
     req.flash('error', 'No user logged in');
     res.redirect('/login');
@@ -87,7 +81,7 @@ app.get("/homepage", (req, res) => {
 });
 
 
-app.post('/homepage', (req, res) => {
+app.post('/', (req, res) => {
   // const {text} = req;
   const text = req.body.category;
   const newText = categorize(text);
@@ -101,7 +95,7 @@ app.post('/homepage', (req, res) => {
       res.json({
         category: newText
       });
-      res.redirect('/homepage');
+      res.redirect('/');
     });
 
 });
@@ -131,7 +125,7 @@ app.post("/register", (req, res) => {
         .max('id')
         .then((id) => {
           req.session.id = id[0].max
-          res.redirect('/homepage');
+          res.redirect('/');
         })
       })
     } else {
@@ -184,7 +178,7 @@ app.post('/profile', (req, res) => {
           email: email,
           password: bcrypt.hashSync(password, 10)})
         .then()
-        res.redirect('/homepage')
+        res.redirect('/')
       } else {
           req.flash('error', 'No user by that email');
           res.redirect('/profile');
@@ -218,7 +212,7 @@ app.post("/login", (req, res) => {
   .then(([userID, passwordMatches]) => {
     if (passwordMatches) {
     req.session.id = userID;
-    res.redirect('/homepage');
+    res.redirect('/');
     } else {
       return Promise.reject(new Error('password no'));
     }

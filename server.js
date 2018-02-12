@@ -16,6 +16,7 @@ const knexLogger = require('knex-logger');
 const cookieSession = require('cookie-session');
 const bcrypt = require('bcrypt');
 const categorize = require('./public/scripts/category');
+const google = require('google-query');
 
 
 // Seperated Routes for each Resource
@@ -48,7 +49,6 @@ app.use(cookieSession({
   keys: [process.env.SECRET_KEY || 'dvelopment']
 }));
 
-
 //flash error messages
 app.use(flash());
 
@@ -56,8 +56,6 @@ app.use(flash());
 // gets a JSON of items table
 app.use("/api/items", itemsRoute(knex));
 app.use("/api/resources", resourcesRoute(knex));
-
-
 
 function awesomeClassifier(input) {
   // This intelligence is entirely artificial, fuck yeah.
@@ -71,7 +69,6 @@ function awesomeClassifier(input) {
   return options[index];
 }
 
-
 app.get("/", (req, res) => {
   if (!req.session.id) {
     req.flash('error', 'No user logged in');
@@ -80,9 +77,9 @@ app.get("/", (req, res) => {
   res.render("homepage.ejs");
 });
 
-
 app.post('/', (req, res) => {
   // const {text} = req;
+  //text is description of task item
   const text = req.body.category;
   const newText = categorize(text);
   knex('items')
@@ -97,7 +94,16 @@ app.post('/', (req, res) => {
       });
       res.redirect('/');
     });
-
+    var itemID = knex('items').max('id');
+    google.search(text, 1, function (url_list) {
+      var url_str = url_list.slice(0, 3);
+      for(const url of url_str) {
+        knex('resources')
+        // .join('items', 'resources.item_id', '=', 'items_id')
+        .insert([{link: url}, {item_id: itemID}])
+        .then()
+      }
+    });
 });
 
 app.get("/overlay", (req, res) => {
@@ -225,24 +231,6 @@ app.post("/login", (req, res) => {
   }
   });
 
-// //category update page
-// app.post("/edit", (req, res) => {
-//   if (!req.session.id) {
-//     req.flash('error', 'No user logged in');
-//     res.redirect('/login');
-//   }
-//   knex('resources')
-//     .where('id', req.session.id)
-//     .first('*')
-//     .then((user) => {
-//       res.render('categoryedit.ejs', {
-//         email: user.email,
-//         errors: req.flash('error')
-//       })
-//     });
-
-// });
-
 app.post("/editCategory", (req, res) => {
   // console.log("hi");
   const newCat = req.body.newCategory;
@@ -262,33 +250,6 @@ app.post("/delete", (req, res) => {
     .del()
     .then()
 });
-
-
-
-  // knex('items')
-  //   .where()
-
-  // res.json({
-  //   text: hello
-  // });
-  // if (!req.session.id) {
-  //   req.flash('error', 'No user logged in');
-  //   res.redirect('/login');
-  // }
-  // knex('resources')
-  //   .where('id', req.session.id)
-  //   .first('*')
-  //   .then((user) => {
-  //     res.render('categoryedit.ejs', {
-  //       email: user.email,
-  //       errors: req.flash('error')
-  //     })
-  //   });
-
-// });
-
-
-
 
 app.post("/logout", (req, res) => {
   req.session = null;

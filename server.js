@@ -242,7 +242,7 @@ app.post("/editCategory", (req, res) => {
     })
     .then()
   });
-
+console.log(process.env.DATABASE_URL);
 app.post("/delete", (req, res) => {
   const description = req.body.currentDescription;
   knex('items')

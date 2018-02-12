@@ -1,4 +1,4 @@
-require('dotenv').config({ path: require('find-config')('.env') });
+require('dotenv').config({ path: ('.env') });
 
 // const ENV = process.env.ENV || "development";
 

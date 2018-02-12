@@ -8,6 +8,13 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
     crossorigin="anonymous">
 
+<% if (errors.length) { %>
+    <% for (const error of errors) { %>
+        <div class="alert alert-danger">
+            <%= error %>
+        </div>
+    <% } %>
+<% } %>
 </head>
 
 <body>
@@ -27,15 +34,11 @@
         <input class="loginpassword" type="password" name="password" placeholder="Password">
         <input type="submit" value="Log In">
     </form>
-    <% if (errors.length) { %>
-        <% for (const error of errors) { %>
-        <p class="error">
-         <%= error %>
-         </p>
-         <% } %>
-    <% } %>
     
     <div id="main"><b>TODO.</b></div>
+
+
+
     <main id="register">
         <section class="header">
             <p>SEE WHAT'S ON YOUR TODO LIST.</p>
@@ -50,6 +53,7 @@
             <input class="registerpassword" type="password" name="registerpassword" placeholder="Password">
             <input type="submit" value="Register">
         </form>
+
     </main>
 </body>
 

@@ -80,13 +80,28 @@ $(document).ready(function () {
     let unorderedList = $('<ul>');
     unorderedList.addClass('list-elements');
 
+    let metadata = [];
+
     for (let link of links) {
       if (link) {
-        console.log(link);
-        let listElement = $('<li>').append(link);
-        unorderedList.append(listElement);
+
+        $.ajax({
+          method: "GET",
+          url: `http://api.linkpreview.net/?key=5a8102ca948bda81b8d7fe836ce0099f35285c4960522&q=${link}`
+        }).done((meta) => {
+          metadata.push(meta);
+          console.log(meta);
+
+        });
+        
+        
+        // let listElement = $('<li>').append(link);
+        
       }
     }
+
+    let listElement = $('<li>').append(metadata);
+    unorderedList.append(listElement);
 
     $('#myModal').find('.modal-title').text(description);
     $('#myModal').find('.modal-body').append(unorderedList);

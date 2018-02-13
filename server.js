@@ -205,7 +205,7 @@ app.post("/login", (req, res) => {
  .limit(1)
  .then((users) => {
      if (users.length) {
-       console.log(users[0].id);
+      //  console.log(users[0].id);
        return Promise.all([
          users[0].id,
          bcrypt.compare(plainTextPasswordFromUser, users[0].password)
@@ -241,7 +241,7 @@ app.post("/editCategory", (req, res) => {
     })
     .then()
   });
-console.log(process.env.DATABASE_URL);
+// console.log(process.env.DATABASE_URL);
 app.post("/delete", (req, res) => {
   const description = req.body.currentDescription;
   knex('items')

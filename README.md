@@ -6,9 +6,10 @@ This project allows you to login and create personalized lists of things you wan
 
 ## Final Product
 
-!["Compose Tweet"](https://raw.githubusercontent.com/SjS16/tweeter/master/public/images/Screen%20Shot%202018-02-01%20at%201.55.25%20PM.png)
-!["Home Page"](https://raw.githubusercontent.com/SjS16/tweeter/master/public/images/Screen%20Shot%202018-02-01%20at%201.55.45%20PM.png)
-!["Long Tweet"](https://raw.githubusercontent.com/SjS16/tweeter/master/public/images/Screen%20Shot%202018-02-01%20at%201.56.33%20PM.png)
+!["Login Page"](https://raw.githubusercontent.com/lauradew/toDoList/master/screenshots/Screen%20Shot%202018-02-13%20at%2012.04.38%20PM.png)
+!["Home Page"](https://raw.githubusercontent.com/lauradew/toDoList/master/screenshots/Screen%20Shot%202018-02-13%20at%2012.05.04%20PM.png)
+!["Task Modal"](https://raw.githubusercontent.com/lauradew/toDoList/master/screenshots/Screen%20Shot%202018-02-13%20at%2012.05.25%20PM.png)
+!["User Edit Page"](https://raw.githubusercontent.com/lauradew/toDoList/master/screenshots/Screen%20Shot%202018-02-13%20at%2012.05.39%20PM.png)
 
 ## Getting Started
 
@@ -16,6 +17,8 @@ This project allows you to login and create personalized lists of things you wan
 2. Install dependencies using the `npm install` command.
 3. Start the web server using the `npm run local` command. The app will be served at <http://localhost:8080/>.
 4. Go to <http://localhost:8080/> in your browser.
+5. Register as a new user.
+6. Start creating your new ToDo list!
 
 ## Dependencies
 

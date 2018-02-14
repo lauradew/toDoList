@@ -5,8 +5,8 @@ exports.seed = function(knex, Promise) {
     .then(function () {
       return Promise.all([
         // Inserts seed entries
-        knex('resources').insert({ link: 'https://en.wikipedia.org/wiki/The_Lord_of_the_Rings_(film_series)', item_id: 1}),
-        knex('resources').insert({ link: 'http://www.imdb.com/title/tt0120737/', item_id: 1 }),
+        knex('resources').insert({ link: 'https://en.wikipedia.org/wiki/The_Lord_of_the_Rings_(film_series)', item_id: 4}),
+        knex('resources').insert({ link: 'http://www.imdb.com/title/tt0120737/', item_id: 4 }),
         knex('resources').insert({ link: 'https://en.wikipedia.org/wiki/Harry_Potter_(film_series)', item_id: 2 }),
         knex('resources').insert({ link: 'http://www.imdb.com/title/tt0241527/', item_id: 2 }),
         knex('resources').insert({ link: 'http://www.hbocanada.com/game-of-thrones', item_id: 3 }),
@@ -62,7 +62,11 @@ exports.seed = function(knex, Promise) {
         knex('resources').insert({ link: 'https://www.homedepot.ca/en/home/p.60w-a19-plant-light.1000139130.html', item_id: 28 }),
         knex('resources').insert({ link: 'http://www.hgtv.com/outdoors/flowers-and-plants/houseplants/how-to-choose-the-best-indoor-lighting-for-plants', item_id: 28 }),
         knex('resources').insert({ link: 'https://www.apple.com/ca/shop/product/MD819AM/A/lightning-to-usb-cable-2-m', item_id: 29 }),
-        knex('resources').insert({ link: 'https://www.bestbuy.com/site/apple-6-6-lightning-to-usb-2-0-cable-white/2253772.p?skuId=2253772', item_id: 29 })
+        knex('resources').insert({ link: 'https://www.bestbuy.com/site/apple-6-6-lightning-to-usb-2-0-cable-white/2253772.p?skuId=2253772', item_id: 29 }),
+        knex('resources').insert({ link: 'https://www.davidstea.com/ca_en/collections/shop-matcha', item_id: 30 }),
+        knex('resources').insert({ link: 'https://www.yelp.ca/biz/monkey-butter-peanut-butter-vancouver', item_id: 31 }),
+        knex('resources').insert({ link: 'https://en.wikipedia.org/wiki/Green_Eggs_and_Ham', item_id: 32 }),
+        knex('resources').insert({ link: 'http://www.imdb.com/title/tt0120737/', item_id: 33 })
 
       ]);
     });

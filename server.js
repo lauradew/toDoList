@@ -22,6 +22,7 @@ const google = require('google-query');
 // Seperated Routes for each Resource
 const itemsRoute = require("./routes/items");
 const resourcesRoute = require("./routes/resources");
+const linkPreviewRoute = require("./routes/linkPreview");
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -56,6 +57,7 @@ app.use(flash());
 // gets a JSON of items table
 app.use("/api/items", itemsRoute(knex));
 app.use("/api/resources", resourcesRoute(knex));
+app.use("/api/linkpreview", linkPreviewRoute());
 
 function awesomeClassifier(input) {
   // This intelligence is entirely artificial, fuck yeah.
@@ -94,15 +96,20 @@ app.post('/', (req, res) => {
       });
       res.redirect('/');
     });
-    var itemID = knex('items').max('id');
-    google.search(text, 1, function (url_list) {
-      var url_str = url_list.slice(0, 3);
-      for(const url of url_str) {
-        knex('resources')
-        .insert([{link: url}, {item_id: itemID}])
-        .then()
-      }
-    });
+  var itemID = knex('items').max('id');
+  google.search(text, 1, function (url_list) {
+    var url_str = url_list.slice(0, 3);
+    for (const url of url_str) {
+      knex('resources')
+        // .join('items', 'resources.item_id', '=', 'items_id')
+        .insert([{
+          link: url
+        }, {
+          item_id: itemID
+        }])
+        .then();
+    }
+  });
 });
 
 app.get("/overlay", (req, res) => {
@@ -111,34 +118,37 @@ app.get("/overlay", (req, res) => {
 
 //user registration
 app.post("/register", (req, res) => {
-  const { registeremail, registerpassword } = req.body;
+  const {
+    registeremail,
+    registerpassword
+  } = req.body;
   if (!registeremail || !registerpassword) {
     req.flash('error', 'Please Fill All Required Fields');
     res.redirect('/login');
   } else {
-  knex('users')
-  .where('email', registeremail)
-  .then((users) => {
-    if (users.length === 0) {
-      knex('users')
-      .insert({
-        email: registeremail,
-        password: bcrypt.hashSync(registerpassword, 10)
-      })
+    knex('users')
+      .where('email', registeremail)
       .then((users) => {
-        knex('users')
-        .max('id')
-        .then((id) => {
-          req.session.id = id[0].max
-          res.redirect('/');
-        })
+        if (users.length === 0) {
+          knex('users')
+            .insert({
+              email: registeremail,
+              password: bcrypt.hashSync(registerpassword, 10)
+            })
+            .then((users) => {
+              knex('users')
+                .max('id')
+                .then((id) => {
+                  req.session.id = id[0].max
+                  res.redirect('/');
+                })
+            })
+        } else {
+          req.flash('error', 'User exists');
+          res.redirect('/login');
+        }
       })
-    } else {
-      req.flash('error', 'User exists');
-      res.redirect('/login');
-    }
-  })
- }
+  }
 });
 
 
@@ -156,79 +166,89 @@ app.get("/profile", (req, res) => {
     res.redirect('/login');
   }
   knex('users')
-  .where('id', req.session.id)
-  .first('*')
-  .then((user) => {
-    res.render('useredit.ejs', {
-      email: user.email,
-      errors: req.flash('error')})
-  });
+    .where('id', req.session.id)
+    .first('*')
+    .then((user) => {
+      res.render('useredit.ejs', {
+        email: user.email,
+        errors: req.flash('error')
+      })
+    });
 
 });
 
 app.post('/profile', (req, res) => {
-  const {email, password, email_confirmation} = req.body;
+  const {
+    email,
+    password,
+    email_confirmation
+  } = req.body;
   if (!email || !email_confirmation || !password) {
     req.flash('error', 'Please Fill All Required Fields');
     res.redirect('/profile');
   } else {
     knex('users')
-    .where('email', email_confirmation)
-    // .andWhere('email', '<>', email) //need to figure out how to check for emails already in the system
-    .then((users) => {
-      if (users.length === 1) {
-        knex('users')
-        .where({id: req.session.id})
-        .update({
-          email: email,
-          password: bcrypt.hashSync(password, 10)})
-        .then()
-        res.redirect('/')
-      } else {
+      .where('email', email_confirmation)
+      // .andWhere('email', '<>', email) //need to figure out how to check for emails already in the system
+      .then((users) => {
+        if (users.length === 1) {
+          knex('users')
+            .where({
+              id: req.session.id
+            })
+            .update({
+              email: email,
+              password: bcrypt.hashSync(password, 10)
+            })
+            .then()
+          res.redirect('/')
+        } else {
           req.flash('error', 'No user by that email');
           res.redirect('/profile');
         }
-      })
+      });
   }
-})
+});
 
 app.post("/login", (req, res) => {
-  const { email } = req.body;
-  const plainTextPasswordFromUser  = req.body.password;
+  const {
+    email
+  } = req.body;
+  const plainTextPasswordFromUser = req.body.password;
   if (!email || !plainTextPasswordFromUser) {
     req.flash('error', 'Please Fill All Required Fields');
     res.redirect('/login');
   } else {
- knex('users')
- .select('id', 'password')
- .where('email', email)
- .limit(1)
- .then((users) => {
-     if (users.length) {
-      //  console.log(users[0].id);
-       return Promise.all([
-         users[0].id,
-         bcrypt.compare(plainTextPasswordFromUser, users[0].password)
-       ]);
-       } else {
+    knex('users')
+      .select('id', 'password')
+      .where('email', email)
+      .limit(1)
+      .then((users) => {
+        if (users.length) {
+          console.log(users[0].id);
+          return Promise.all([
+            users[0].id,
+            bcrypt.compare(plainTextPasswordFromUser, users[0].password)
+          ]);
+        } else {
           return Promise.reject(new Error('email no'))
-       }
-     })
-  .then(([userID, passwordMatches]) => {
-    if (passwordMatches) {
-    req.session.id = userID;
-    res.redirect('/');
-    } else {
-      return Promise.reject(new Error('password no'));
-    }
-  })
-   .catch((err) => {
-     console.error(err);
-     req.flash('error', 'NOT A VALID LOGIN.');
-     res.redirect('/login');
-   });
+        }
+      })
+      .then(([userID, passwordMatches]) => {
+        if (passwordMatches) {
+          req.session.id = userID;
+          res.redirect('/');
+        } else {
+          return Promise.reject(new Error('password no'));
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        req.flash('error', 'NOT A VALID LOGIN.');
+        res.redirect('/login');
+      });
   }
-  });
+});
 
 app.post("/editCategory", (req, res) => {
   // console.log("hi");
@@ -240,8 +260,8 @@ app.post("/editCategory", (req, res) => {
       category: newCat
     })
     .then()
-  });
-// console.log(process.env.DATABASE_URL);
+});
+
 app.post("/delete", (req, res) => {
   const description = req.body.currentDescription;
   knex('items')
@@ -258,5 +278,3 @@ app.post("/logout", (req, res) => {
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
 });
-
-

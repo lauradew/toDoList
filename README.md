@@ -1,6 +1,6 @@
 # TODO
 
-Tweeter is a simple, timely way to keep track of everything you want to do.
+ToDoList is a simple, timely way to keep track of everything you want to do.
 
 This project allows you to login and create personalized lists of things you want to watch, to read, to eat, and to buy. Type in a word of phrase and have it autocategorized into one of the four lists. If you have completed it or want it to be in one of the other lists you can delete it or change the category. On the pop-up modal for each item you will also see links relating to it from a Google Search API. Similarly if you want to updat eyour profiles emailor password you can also do that through the edit profile page.
 
@@ -23,7 +23,7 @@ This project allows you to login and create personalized lists of things you wan
 ## Dependencies
 
 - Express
-- Node 
+- Node
 - Bayes
 - Bayes-classifier
 - Bcrypt
